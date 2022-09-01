@@ -1,0 +1,33 @@
+# This document will cover basic overview of Kubernetes Architecture
+
+Kubernetes Worker Node:
+ - A node is a machine where Kubernetes is installed. It is where containers will be launched.
+
+Cluster:
+ - A cluster is a group of nodes.
+
+Kubernetes Master:
+ - Another node with Kubernetes installed in it, and it is configured as mastered.
+ - The master watches over the nodes in the cluster and is responsible for actual orchestration of container on the
+   worker nodes.
+
+Components:
+ - API Server
+   - The API server acts as front end for Kubernetes.
+   - The users, management devices, CLIs all talk to the API server to interact with Cluster.
+
+ - etcd service
+   - Etcd is a distributed reliable key value store used by Kubernetes to store all data used to manage cluster.
+   - Etcd stores all the information of masters and nodes in the cluster in a distributed manner.
+   - Etcd is responsible for implementing locks within the cluster to ensure that there are no conflicts within the master.
+
+ - kubelet
+ - Container Runtime
+ - Controller
+   - The Controllers are brain behind the orchestration.
+   - They are responsible for noticing and responding when nodes, containers or endpoints goes down.
+
+ - Scheduler
+   - The Scheduler is responsible for distributing work on containers across multiple nodes.
+   - It looks for newly created containers and assigns them to nodes.
+
