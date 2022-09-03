@@ -34,3 +34,9 @@
 
 9. Use kubectl to forward the port
    kubectl port-forward service/hello-minikube 7080:8080
+
+10. Use kubectl to delete a service
+    kubectl port-forward service/hello-minikube 7080:8080
+
+11. Use kubectl to delete a deployment
+    kubectl port-forward service/hello-minikube 7080:8080
