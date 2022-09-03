@@ -1,0 +1,36 @@
+# This document will help us to install Minikube on Windows.
+
+- Minikube is a single node cluster which is used to run sample application.
+
+1. Install Kubelet
+   curl -LO "https://dl.k8s.io/release/v1.25.0/bin/windows/amd64/kubectl.exe"
+
+2. Install Minikube using below command
+
+   New-Item -Path 'c:\' -Name 'minikube' -ItemType Directory -Force
+   Invoke-WebRequest -OutFile 'D:\minikube\minikube.exe' -Uri 'https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe' -UseBasicParsing
+
+3. Add minikube to path
+   $oldPath = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::Machine)
+   if ($oldPath.Split(';') -inotcontains 'C:\minikube'){ `
+    [Environment]::SetEnvironmentVariable('Path', $('{0};C:\minikube' -f $oldPath), [EnvironmentVariableTarget]::Machine) `
+   }
+
+4. Start minikube
+   minikube start
+
+5. Interact with the cluster
+   kubectl get po -A
+
+6. Deploy Applications
+   kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4
+   kubectl expose deployment hello-minikube --type=NodePort --port=8080
+
+7. To view deployments
+   kubectl get services hello-minikube
+
+8. To access minikube service
+   minikube service hello-minikube
+
+9. Use kubectl to forward the port
+   kubectl port-forward service/hello-minikube 7080:8080
