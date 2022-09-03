@@ -36,7 +36,16 @@
    kubectl port-forward service/hello-minikube 7080:8080
 
 10. Use kubectl to delete a service
-    kubectl port-forward service/hello-minikube 7080:8080
+    .\kubectl.exe delete services hello-minikube
 
 11. Use kubectl to delete a deployment
-    kubectl port-forward service/hello-minikube 7080:8080
+    .\kubectl.exe delete deployment hello-minikube
+
+12. How to spin-up a pod with nginx container
+    .\kubectl.exe run nginx --image=nginx
+
+13. How to describe or view information about pods
+    .\kubectl.exe describe pods nginx
+
+14. How to check on which node Pod is running and its internal IP
+    .\kubectl.exe get pods -o wide
