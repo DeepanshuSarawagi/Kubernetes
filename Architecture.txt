@@ -22,7 +22,11 @@ Components:
    - Etcd is responsible for implementing locks within the cluster to ensure that there are no conflicts within the master.
 
  - kubelet
+   - Kubelet is the agent that runs on each node of the cluster.
+
  - Container Runtime
+   - It is the underlying software that is used to run containers.
+
  - Controller
    - The Controllers are brain behind the orchestration.
    - They are responsible for noticing and responding when nodes, containers or endpoints goes down.
