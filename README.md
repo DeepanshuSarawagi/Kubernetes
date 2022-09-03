@@ -6,3 +6,6 @@ This repository is created to learn Kubernetes and prepare for CKA.
 
 # How to setup Minikube single node cluster
 [Minikube Installation](/InstallingMinikube.txt)
+
+# How to use kubectl to view and spin up Pods
+[Pods basics](/Pods.txt)
