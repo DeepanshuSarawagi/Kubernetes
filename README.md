@@ -8,4 +8,4 @@ This repository is created to learn Kubernetes and prepare for CKA.
 [Minikube Installation](/InstallingMinikube.txt)
 
 # How to use kubectl to view and spin up Pods
-[Pods basics](/Pods.txt)
+[Pods basics](/Pods/Pods.txt)
