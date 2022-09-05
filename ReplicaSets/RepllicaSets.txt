@@ -13,6 +13,9 @@
   replica set creation.
 - We need to specify the matchLabels which is a child element of selector definition
 - The matchLabel will match all the labels with the specified type as defined in the yaml.
+- If we specify the replicas to be 5, then replicaset will create 5 replica pods.
+- In case if we manually create a new pod with matching label as specified in the template, replicaset will
+  delete the 6th (additional) pod which we created manually.
 
 Commands:
  - Command to apply/create replica sets using kubectl
