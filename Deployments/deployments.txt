@@ -1,0 +1,5 @@
+# This document will give brief explanation on how deployments work in Kubernetes
+
+- The Deployment object in Kubernetes provides us the capability to upgrade the underlying instances seamlessly using the
+  rolling updates.
+-
