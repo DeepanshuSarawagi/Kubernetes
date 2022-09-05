@@ -17,3 +17,6 @@ How to describe or view information about pods
 
 How to check on which node Pod is running and its internal IP
 .\kubectl.exe get pods -o wide
+
+How to check which api version and kind pods use
+.\kubectl explain pods

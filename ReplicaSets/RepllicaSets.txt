@@ -26,3 +26,5 @@ Commands:
    - $kubectl describe replicasets myapp-rc
  - Command to view wide info about replica sets
    - $kubectl describe replicasets myapp-rc
+ - Command to check which api version ReplicaSet use
+   - $kubectl explain replicasets
