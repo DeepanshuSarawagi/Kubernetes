@@ -1,0 +1,11 @@
+# This document is created to learn about ClusterIP in Kubernetes.
+# Created on 10-09-2022.
+# Created by Deepanshu Sarawagi.
+
+- ClusterIP service helps to communicate the pods in different tiers.
+- For example, pods in database tiers would want to communicate with pods in app tier, and this is where ClusterIP
+  service comes in.
+- ClusterIP service helps to group the pods together and provides a single interface to access the pods in a group.
+- For example, a service created for the app-tier pods will help group all the pods together and would provide a single interface
+  for other pods/services to access this.
+- The requests are forwarded to one of the pods under the service randomly.

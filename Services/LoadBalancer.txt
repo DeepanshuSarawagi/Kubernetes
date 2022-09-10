@@ -1,0 +1,7 @@
+# This document is created to learn about LoadBalancer in Kubernetes.
+# Created on 10-09-2022.
+# Created by Deepanshu Sarawagi.
+
+- LoadBalancer service helps to route the requests to set of pods deployed on set of nodes thus providing the external
+  user a single endpoint to access.
+- All most cloud providers are supported for this service.
