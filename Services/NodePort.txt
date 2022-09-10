@@ -1,0 +1,26 @@
+# Brief explanation of Kubernetes Service object and NodePort service
+
+- The Kubernetes Service is an object just like Pods, Replicasets or Deployments.
+- One of its use case is to listen to a port on a node and forward requests to that port to a pod on the port running the
+  web application.
+- This type of service is known as NodePort service.
+- NodePort service helps us to map a port on the node to a port on the Pod.
+- NodePort service is like a virtual server inside the Node. It has its own IP. This IP is known as cluster IP of the service.
+- There are three ports involved:
+  - The port on the pod where the actual webserver is running is 80. This is referred to as targetPort. This is where the
+    service forwards.
+  - The second port is where the service itself listens on. This is called/termed as port itself.
+  - The third port is on the Node itself which we use to access the webserver externally. This is known as nodePort.
+    - nodePort can be in range between 30000 and 32767.
+- While creating a service definition using yaml, it is mandatory to provide the Port under ports element of spec section.
+- If targetPort is not specified, it is assumed to be same as Port.
+- If nodePort is not specified, a free port will be assigned in range between 30000 and 32767.
+- We also need to specify the selectors element within spec section.
+- The selectors element will contain labels which we defined for pods.
+- This will help to connect the NodePort service with all the pods discovered with a matching label.
+
+Command to list the services:
+- $kubectl get service -o wide
+
+Command to describe service:
+- $kubectl describe service <service name>

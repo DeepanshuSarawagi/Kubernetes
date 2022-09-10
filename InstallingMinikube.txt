@@ -30,7 +30,7 @@
    kubectl get services hello-minikube
 
 8. To access minikube service
-   minikube service hello-minikube
+   minikube service hello-minikube --url
 
 9. Use kubectl to forward the port
    kubectl port-forward service/hello-minikube 7080:8080

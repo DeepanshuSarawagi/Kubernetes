@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: nginx-container
-          image: nginx:1.18
+          image: nginx
   replicas: 3
   strategy:
     type: RollingUpdate

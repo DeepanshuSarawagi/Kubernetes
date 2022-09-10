@@ -2,6 +2,7 @@
 
 Kubernetes Worker Node:
  - A node is a machine where Kubernetes is installed. It is where containers will be launched.
+ - $kubectl get nodes -o wide  # This is used to display all the nodes
 
 Cluster:
  - A cluster is a group of nodes.
