@@ -12,9 +12,11 @@ spec:
     spec:
       containers:
         - name: httpd-container
-          image: httpd:2.4-alpine
+          image: httpd
     metadata:
       name: httpd-pod
       labels:
         type: frontend-deployment
   replicas: 3
+  strategy:
+    type: Recreate
