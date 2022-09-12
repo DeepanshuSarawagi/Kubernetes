@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-app-deployment
+  labels:
+    name: voting-app-deployment
+    app: demo-voting-app
+spec:
+  selector:
+    matchLabels:
+      app: demo-voting-app
+  template:
+    metadata:
+      name: voting-app
+      labels:
+        app: demo-voting-app
+    spec:
+      containers:
+        - name: voting-app-pod
+          image: deepanshusarawagi/my-booklist-app
+#          command:
+#            - "java"
+#          args:
+#            - "-jar"
+#            - "BookList.jar"
+#          ports:
+#            - containerPort: 8080
+  replicas: 2
+  strategy:
+    type: RollingUpdate
