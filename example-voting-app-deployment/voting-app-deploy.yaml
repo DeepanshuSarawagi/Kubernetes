@@ -18,8 +18,10 @@ spec:
           image: kodekloud/examplevotingapp_vote:v1
           ports:
             - containerPort: 80
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       name: voting-app-pod
       app: demo-voting-app
+  strategy:
+    type: RollingUpdate
