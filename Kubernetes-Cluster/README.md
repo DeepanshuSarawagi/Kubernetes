@@ -3,7 +3,7 @@
 ## Prerequisites
 
 1. Create a free developer Redhat account
-2. Download the RHEL8 iso DVD image
+2. Download the RHEL7 iso DVD image (Since RHEL7 is system requirement for setting up calico CNI)
 3. Create three VMs as follows with at least 2GB RAM and 2vCPUs
     - Kubernetes-Controller
     - Kubernetes-Node1
