@@ -54,7 +54,7 @@ b. Set up the repository
 
 ### Note:
 
-If you get below error while installing document, you can follow this [fix](https://stackoverflow.com/questions/65878769/cannot-install-docker-in-a-rhel-server).
+If you get below error while installing docker, you can follow this [fix](https://stackoverflow.com/questions/65878769/cannot-install-docker-in-a-rhel-server).
 
 Error: Package: docker-ce-rootless-extras-20.10.18-3.el7.x86_64 (docker-ce-stable)
 Requires: fuse-overlayfs >= 0.7
@@ -144,3 +144,14 @@ kubernetescontroller.dev.deepanshu.com   Ready    control-plane   30m   v1.25.2
 Execute below command on each worker node as root user.
 
 - $kubeadm join 192.168.77.132:6443 --token "token" --discovery-token-ca-cert-hash sha256:abcdefghijkl --cri-socket unix:///var/run/cri-dockerd.sock
+
+## 6. Create PODs to run on worker nodes
+
+Use this yaml definition to create [nginx](../Pods/nginx.yaml) POD on worker node using below command.
+- $ kubectl create -f nginx.yaml
+
+You will notice that PODs are running on worker node. To validate the same, you can execute below command which will specify
+
+on which node, pod is running.
+
+- $kubectl get pods -o wide
