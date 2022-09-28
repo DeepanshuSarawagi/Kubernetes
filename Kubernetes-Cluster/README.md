@@ -33,15 +33,15 @@ To install Docker Engine, you need a maintained version of RHEL 7, RHEL 8 or RHE
 
 a. Remove older version of Docker Engine
     ```
-     sudo yum remove docker \\\
-     docker-client \\\
-     docker-client-latest \\\
-     docker-common \\\
-     docker-latest \\\
-     docker-latest-logrotate \\\
-     docker-logrotate \\\
-     docker-engine \\\
-     podman \\\
+     sudo yum remove docker \
+     docker-client \
+     docker-client-latest \
+     docker-common \
+     docker-latest \
+     docker-latest-logrotate \
+     docker-logrotate \
+     docker-engine \
+     podman \
      runc
      ```
 
