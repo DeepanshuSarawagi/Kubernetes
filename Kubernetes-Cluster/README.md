@@ -32,16 +32,18 @@ For simplicity, we will install Docker on RHEL using [following instructions](ht
 To install Docker Engine, you need a maintained version of RHEL 7, RHEL 8 or RHEL 9 on s390x (IBM Z). Archived versions aren’t supported or tested.
 
 a. Remove older version of Docker Engine
-   - sudo yum remove docker \\\
-     docker-client \\\
-     docker-client-latest \\\
-     docker-common \\\
-     docker-latest \\\
-     docker-latest-logrotate \\\
-     docker-logrotate \\\
-     docker-engine \\\
-     podman \\\
+    ```
+     sudo yum remove docker \
+     docker-client \
+     docker-client-latest \
+     docker-common \
+     docker-latest \
+     docker-latest-logrotate \
+     docker-logrotate \
+     docker-engine \
+     podman \
      runc
+     ```
 
 b. Set up the repository
    - $sudo yum install -y yum-utils
