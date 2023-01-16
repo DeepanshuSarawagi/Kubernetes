@@ -11,7 +11,7 @@ This repository is created to learn Kubernetes and prepare for CKA.
 [Pods basics](/Pods/Pods.txt)
 
 # Learn about Replicasets
-1. [Replica sets basics](/ReplicaSets/RepllicaSets.txt)
+1. [Replica sets basics](/01-Kubernetes-Cluster-Architecture/RepllicaSets.md)
 2. [Sample replica set yaml](ReplicaSets/rc-definition.yaml)
 
 # Learn about Deployments
