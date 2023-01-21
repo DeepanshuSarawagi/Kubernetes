@@ -34,3 +34,41 @@ Deployment strategies:
 Rollback:
 - We can undo the deployment or rollback the update by using the below command:
   - $kubectl rollout undo deployment/httpd-frontend
+
+Exam tip:
+- If we are asked to create a deployment, it may be difficult to create YAML file during exam, hence, we can use the
+  ```$kubectl run``` command to run a pod with specified image and replicas set.
+
+## Useful commands to generate yamls and create pods
+
+```shell
+#Create an NGINX Pod
+$kubectl run nginx --image=nginx
+
+#Generate POD Manifest YAML file (-o yaml). Don't create it(--dry-run)
+
+$kubectl run nginx --image=nginx --dry-run=client -o yaml
+
+#Create a deployment
+
+$kubectl create deployment --image=nginx nginx
+
+#Generate Deployment YAML file (-o yaml). Don't create it(--dry-run)
+
+$kubectl create deployment --image=nginx nginx --dry-run=client -o yaml
+
+#Generate Deployment YAML file (-o yaml). Don't create it(--dry-run) with 4 Replicas (--replicas=4)
+
+$kubectl create deployment --image=nginx nginx --dry-run=client -o yaml > nginx-deployment.yaml
+
+#Save it to a file, make necessary changes to the file (for example, adding more replicas) and then create the deployment.
+
+$kubectl create -f nginx-deployment.yaml
+
+#OR
+
+#In k8s version 1.19+, we can specify the --replicas option to create a deployment with 4 replicas.
+
+$kubectl create deployment --image=nginx nginx --replicas=4 --dry-run=client -o yaml > nginx-deployment.yaml
+
+```
