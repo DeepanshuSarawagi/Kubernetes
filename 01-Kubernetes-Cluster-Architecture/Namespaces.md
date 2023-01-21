@@ -9,3 +9,8 @@
 - When a service is created, a DNS record is automatically created. It is in the following format.
   - db-service.dev.svc.cluster.local
   - This is service-name.namespace.svc.domain
+```shell
+$kubectl create namespace dev
+```
+- For limiting resource quota for a namespace, refer [resource-quota.yaml](../ResourceQuota/resource-quota.yaml)
+- 
