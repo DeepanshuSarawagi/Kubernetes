@@ -24,3 +24,6 @@ Command to list the services:
 
 Command to describe service:
 - $kubectl describe service <service name>
+
+Useful command to create nodePort service and generate the yaml
+$kubectl create service nodeport webapp-service --node-port=30080 --tcp=8080 --dry-run=client -o yaml
