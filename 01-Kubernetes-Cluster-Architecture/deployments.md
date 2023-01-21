@@ -20,6 +20,8 @@ Rollouts and Versioning:
   - $kubectl rollout status deployment/httpd-frontend
 - To view the history of the rollouts, below is the command:
   - $kubectl rollout history deployment/httpd-frontend
+- To view all deployment related objects below is the command:
+  - $kubectl get all
 
 Deployment strategies:
 - One of rolling out the new updates to the deployment is by deleting all the pods and then creating the new ones.

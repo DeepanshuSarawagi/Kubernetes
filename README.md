@@ -15,4 +15,4 @@ This repository is created to learn Kubernetes and prepare for CKA.
 2. [Sample replica set yaml](ReplicaSets/rc-definition.yaml)
 
 # Learn about Deployments
-[Deployment and Rollout strategies](Deployments/deployments.txt)
+[Deployment and Rollout strategies](01-Kubernetes-Cluster-Architecture/deployments.md)
