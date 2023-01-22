@@ -13,4 +13,3 @@
 $kubectl create namespace dev
 ```
 - For limiting resource quota for a namespace, refer [resource-quota.yaml](../ResourceQuota/resource-quota.yaml)
-- 
