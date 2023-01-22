@@ -21,3 +21,9 @@ How to check on which node Pod is running and its internal IP
 
 How to check which api version and kind pods use
 .\kubectl explain pods
+
+Imperative command to create pods with labels
+.\kubectl run nginx --image nginx:alpine --labels="app=webserver,tier=frontend"
+
+Imperative command to create a pod and expose it as a clusterIp service
+.\kubectl run nginx --image=nginx:alpine --port=80 --labels="tier=frontend" --expose=true
