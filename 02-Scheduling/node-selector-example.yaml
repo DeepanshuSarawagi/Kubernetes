@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node01
+  labels:
+    app: webservice
+spec:
+  containers:
+    - name: rest-web-service
+      image: tomcat
+  nodeSelector:
+    size: Large
