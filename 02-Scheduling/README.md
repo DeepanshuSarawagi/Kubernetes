@@ -64,3 +64,37 @@ spec:
 # Example of filtering objects using selector
 $kubectl get pods --selector tier=frontend
 ```
+
+## 3. Taints and Tolerations
+
+Taints and Tolerations are used to set restrictions on what pods can be scheduled on a node. Taints are set on nodes and tolerations
+are set on pods.
+
+```kubectl taint nodes node01 app=auth:NoSchedule|PreferNoSchedule|NoExecute```
+
+This is the command to taint a node. As you can see from the above command, you can taint a node with three different taint
+effects.
+
+- NoSchedule: Any POD which do not tolerate this taint, will not be scheduled on this node.
+- PreferNoSchedule: System/Kube Scheduler will try not to schedule a pod on this tainted node but it does not guarantee.
+- NoExecute: No new pods would be scheduled on this tainted node. Any pods which have already been created on this node would be evicted 
+  if they do not tolerate the taint. (PODs which were created before the node was tainted)
+
+Tolerations are added to a pod.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    tier: backend
+spec:
+  containers:
+    - name: tomcat-instance1
+      image: tomcat
+  tolerations:
+    - key: "app"
+      operator: "Equal"
+      value: "auth"
+      effect: "NoSchedule"
+```
