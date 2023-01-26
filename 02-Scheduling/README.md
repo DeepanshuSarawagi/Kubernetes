@@ -98,3 +98,4 @@ spec:
       value: "auth"
       effect: "NoSchedule"
 ```
+Once these tolerations are added, only pods which can tolerate the taints specified will be scheduled on matching tainted nodes.
