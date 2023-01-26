@@ -11,3 +11,5 @@ by setting the nodeName property in the pod-definition YAML file. This can only 
 allow us to override this property if the pod is already created. However, there is a way to achieve this as well.
 
 We can create a Binding object and send a POST request to binding API.
+
+Refer to [nginx.yaml](../Pods/nginx.yaml) for manually assigning the node.
