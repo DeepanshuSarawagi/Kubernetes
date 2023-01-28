@@ -105,3 +105,21 @@ spec:
 Once these tolerations are added, only pods which can tolerate the taints specified will be scheduled on matching tainted nodes.
 
 ## 4. Node Selectors
+
+We can set limitations on pod to only run on desired nodes. This can be achieved by using nodeSelector field in the spec section
+of pod definition. The key-value pair under nodeSelector as seen in [node-selector-example.yaml](node-selector-example.yaml) 
+is defined as labels for a node. The scheduler uses these labels to match and identify the nodes to place the pods on.
+
+We can use below command to label a node.
+
+```shell
+$kubectl label nodes <node-name> <label-key>=<label-value>
+
+# example
+
+$kubectl label nodes node01 size=Large
+```
+
+## 5. Node Affinity
+
+Let's say if we have a complex requirement where we want to place pods on node of size medium or 
