@@ -1,6 +1,16 @@
 # Scheduling in Kubernetes
 
-## 1. Manual scheduling
+## Table of contents
+
+1. [Manual Scheduling](#1-manual-scheduling-)
+2. [Labels and Selectors](#2-labels-and-selectors-)
+3. [Taints and Tolerations](#3-taints-and-tolerations-)
+4. [Node Selectors](#4-node-selectors-)
+5. [Node Affinity](#5-node-affinity-)
+6. [Resource Requests and Limits](#6-resource-requirements-and-limits-)
+ 
+
+## 1. Manual scheduling:
 Every pod definition has a property called nodeName which isn't set by default. It gets added at kubernetes Live configuration
 when pod is scheduled on node. The Kube-Scheduler goes through all the pods and checks for this property in the definition
 file. If the property is not get, a scheduling algorithm is run which then identifies the best node to schedule the unscheduled
@@ -14,7 +24,7 @@ We can create a Binding object and send a POST request to binding API.
 
 Refer to [nginx.yaml](../Pods/nginx.yaml) for manually assigning the node.
 
-## 2. Labels and Selectors
+## 2. Labels and Selectors:
 
 Labels are properties attached to the kube objects. Selectors are used to filter the different kube objects.
 
@@ -65,7 +75,7 @@ spec:
 $kubectl get pods --selector tier=frontend
 ```
 
-## 3. Taints and Tolerations
+## 3. Taints and Tolerations:
 
 Taints and Tolerations are used to set restrictions on what pods can be scheduled on a node. <mark>Taints are set on nodes and tolerations
 are set on pods.</mark>
@@ -104,7 +114,7 @@ spec:
 ```
 Once these tolerations are added, only pods which can tolerate the taints specified will be scheduled on matching tainted nodes.
 
-## 4. Node Selectors
+## 4. Node Selectors:
 
 We can set limitations on pod to only run on desired nodes. This can be achieved by using nodeSelector field in the spec section
 of pod definition. The key-value pair under nodeSelector as seen in [node-selector-example.yaml](node-selector-example.yaml) 
@@ -120,7 +130,7 @@ $kubectl label nodes <node-name> <label-key>=<label-value>
 $kubectl label nodes node01 size=Large
 ```
 
-## 5. Node Affinity
+## 5. Node Affinity:
 
 Let's say if we have a complex requirement where we want to place pods on node of size medium or large, or lets say if do not
 want to place pods on a node which is small, then node selector makes it difficult to achieve it. Hence, comes the concept of
@@ -128,7 +138,7 @@ node affinity.
 
 With Node Affinity, we get the flexibility to place pods on a desired node even if the node requirement is complex.
 
-### Node Affinity types:
+### 5a. Node Affinity types:
 
 requiredDuringSchedulingIgnoredDuringExecution:
 : The scheduler will mandate that any new pods be scheduled on the given affinity rules. But for those pods which are already
@@ -150,4 +160,15 @@ requiredDuringSchedulingIgnoredDuringExecution:
 
 Refer [node-affinity-example.yaml](node-affinity-example.yaml) to see how we can take advantage of affinity rules to schedule
 pods on a desired node.
+
+## 6. Resource Requirements and Limits:
+
+Every pod requires a certain amount of CPU and memory. By default, every container in a pod requests at least 0.5 CPU and
+256Mi of memory. We can override this setting using requests under resources section.
+
+To explain CPU limits, 1 CPU count in pod-definition.yaml represents 1 AWS vCPU/1 GCP Core/1 Azure Core/1 Hyperthread.
+And 1Mi - 1 Mebibytes is equivalent to 1,048,576 bytes.
+
+By default, Kubernetes sets a limit of 1CPU and 512Mi a container can utilize on a node. We can override this setting as 
+defined in [pod-resource-example.yaml](pod-resource-example.yaml) by setting limits under resources section.
 
