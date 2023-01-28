@@ -122,4 +122,32 @@ $kubectl label nodes node01 size=Large
 
 ## 5. Node Affinity
 
-Let's say if we have a complex requirement where we want to place pods on node of size medium or 
+Let's say if we have a complex requirement where we want to place pods on node of size medium or large, or lets say if do not
+want to place pods on a node which is small, then node selector makes it difficult to achieve it. Hence, comes the concept of
+node affinity.
+
+With Node Affinity, we get the flexibility to place pods on a desired node even if the node requirement is complex.
+
+### Node Affinity types:
+
+requiredDuringSchedulingIgnoredDuringExecution:
+: The scheduler will mandate that any new pods be scheduled on the given affinity rules. But for those pods which are already
+  scheduled, this rule can be ignored, and will continue to run.
+
+preferredDuringSchedulingIgnoredDuringExecution:
+: The scheduler will not mandate that any new pods be scheduled on the given affinity rules.
+
+requiredDuringSchedulingIgnoredDuringExecution:
+: The scheduler will mandate that any new pods be scheduled on the given affinity rules. And for those pods which are already
+  scheduled, this rule will be applied as well. Let's say that if a change is made to a node that do not meet affinity rules,
+  then the scheduled pods will be evicted.
+
+| Affinity Type | DuringScheduling | During Execution |
+|:-------------:|:----------------:|:----------------:|
+|    Type 1     |     Required     |     Ignored      |
+|    Type 2     |    Preferred     |     Ignored      |
+|    Type 3     |     Required     |     Required     |
+
+Refer [node-affinity-example.yaml](node-affinity-example.yaml) to see how we can take advantage of affinity rules to schedule
+pods on a desired node.
+
