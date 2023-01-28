@@ -164,11 +164,10 @@ pods on a desired node.
 ## 6. Resource Requirements and Limits:
 
 Every pod requires a certain amount of CPU and memory. By default, every container in a pod requests at least 0.5 CPU and
-256Mi of memory. We can override this setting using requests under resources section.
+256Mi of memory. We can specify this by creating the LimitRange object as defined in [limit-range](limit-range.yaml).
 
 To explain CPU limits, 1 CPU count in pod-definition.yaml represents 1 AWS vCPU/1 GCP Core/1 Azure Core/1 Hyperthread.
 And 1Mi - 1 Mebibytes is equivalent to 1,048,576 bytes.
 
-By default, Kubernetes sets a limit of 1CPU and 512Mi a container can utilize on a node. We can override this setting as 
-defined in [pod-resource-example.yaml](pod-resource-example.yaml) by setting limits under resources section.
-
+**By default, Kubernetes sets a limit of 1CPU and 512Mi a container can utilize on a node. We can override this setting as 
+defined in [pod-resource-example.yaml](pod-resource-example.yaml) by setting limits under resources section.**
