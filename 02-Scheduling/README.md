@@ -8,6 +8,8 @@
 4. [Node Selectors](#4-node-selectors-)
 5. [Node Affinity](#5-node-affinity-)
 6. [Resource Requests and Limits](#6-resource-requirements-and-limits-)
+7. [DaemonSets](#7-daemonsets-)
+8. [Static Pods](#8-static-pods-)
  
 
 ## 1. Manual scheduling:
@@ -172,7 +174,7 @@ And 1Mi - 1 Mebibytes is equivalent to 1,048,576 bytes.
 **By default, Kubernetes sets a limit of 1CPU and 512Mi a container can utilize on a node. We can override this setting as 
 defined in [pod-resource-example.yaml](pod-resource-example.yaml) by setting limits under resources section.**
 
-## 7. DaemonSets
+## 7. DaemonSets:
 
 Daemon Sets are like replica sets which runs multiple instances of pods but it runs one copy of pod in every node of a cluster.
 Whenever a new node is added to a cluster, a replica of pod is added to that node. DaemonSet ensures, a copy of pod is always
@@ -196,3 +198,44 @@ $kubectl describe daemonsets
 ```
 
 Daemonset uses **node affinity** to schedule pods on every node.
+
+## 8. Static Pods:
+
+In a normal scenario, where we have a Kubernetes master which hosts kubernetes components such as etcd-controller, kube-scheduler,
+kube-api server et cetera. Every worker has a kubelet installed which waits for instructions from kube-api server to install
+a pod. As we know that, kube-scheduler is responsible for scheduling the pods on right nodes. However, lets consider a scenario,
+wherein kube-master is not available. So, how does kubelet install pods in such cases?
+
+Kubelet, periodically checks for any pods-definition yaml files under this directory - ```/etc/kubernetes/manifests```.
+Kubelet will try to create pods using any yaml file found in this directory. These pods are called as **static pods**. Any
+changes made to these yaml files are picked by kubelet and then the respective change is applied to those corresponding
+static pods.
+
+**Note:**
+
+- You can only create pods this way. You cannot create Deployments or Replica Sets or services using static pods concept.
+
+- Kubelet works at pods level, which is why it is able to create static pods using this way.
+
+- The directory which kubelet looks for is called as **--pod-manifest-path**. It can be configured to any location in kubelet.service.
+
+- There is another way to configure --pod-manifest-path. You can create a config.yaml with kubelet properties and refer that
+  yaml using --config parameter in kubelet.service. This config.yaml in turn can have manifest path configured using
+  staticPodPath option. This approach is used by kubeadm to install kube clusters.
+
+```shell
+#kubelet.service
+ExecStart=/usr/local/bin/kubelet \\
+  --container-runtime=remote \\
+  --container-runtime-endpoint=unix:///var/run/containerd/containerd.sock \\
+  --config=kubeConfig.yml \\
+  --kubeconfig=/var/lib/kubelet/kubeconfig \\
+  --network-plugin=cni \\
+  --register-node=true \\
+  --v=2
+
+```
+```yaml
+#kubeConfig.yaml
+staticPodPath: /etc/kubernetes/manifests
+```
