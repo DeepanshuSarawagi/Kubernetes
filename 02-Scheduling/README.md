@@ -171,3 +171,28 @@ And 1Mi - 1 Mebibytes is equivalent to 1,048,576 bytes.
 
 **By default, Kubernetes sets a limit of 1CPU and 512Mi a container can utilize on a node. We can override this setting as 
 defined in [pod-resource-example.yaml](pod-resource-example.yaml) by setting limits under resources section.**
+
+## 7. DaemonSets
+
+Daemon Sets are like replica sets which runs multiple instances of pods but it runs one copy of pod in every node of a cluster.
+Whenever a new node is added to a cluster, a replica of pod is added to that node. DaemonSet ensures, a copy of pod is always
+available on every node of the cluster. 
+
+Uses cases:
+
+: Let's say if we want to deploy a monitoring agent on every node of a cluster then daemon set is a perfect fit for this
+requirement.
+Another use case is Kube-Proxy which is deployed as daemonset on every node in Kube cluster.
+One more use is networking agent, Weave net networking solution requires an agent to be up and running on every node of
+kube cluster. Hence, the weavenet networking agent is a perfect fit for this use case.
+
+For example definition, refer [daemonset-example.yaml](daemonset-example.yaml).
+
+```shell
+# Command to view daemonsets in a cluster
+
+$kubectl get daemonsets
+$kubectl describe daemonsets
+```
+
+Daemonset uses **node affinity** to schedule pods on every node.
