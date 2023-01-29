@@ -239,3 +239,10 @@ ExecStart=/usr/local/bin/kubelet \\
 #kubeConfig.yaml
 staticPodPath: /etc/kubernetes/manifests
 ```
+Use Case:
+
+: One use case we can think of is since kubelet is independent of master to create static pods, we can configure the control
+plane components as static pods on every master node. This is how kubeadm configures kube components when it is used to bootstrap
+a cluster.
+That's why, when kubeadm is used, all the core kube components are installed as pods in kube-system namespace instead of 
+installing them as a service.
