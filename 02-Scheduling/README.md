@@ -246,3 +246,8 @@ plane components as static pods on every master node. This is how kubeadm config
 a cluster.
 That's why, when kubeadm is used, all the core kube components are installed as pods in kube-system namespace instead of 
 installing them as a service.
+
+## 9. Multiple Schedulers:
+
+A kubernetes cluster can have multiple schedulers at a time. We can create deployments or pods instructing to use custom
+scheduler confgured by us to schedule pods. 
