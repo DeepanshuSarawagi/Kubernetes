@@ -4,7 +4,7 @@
 
 1. [Metrics Server](#1-metrics-server-)
     1. [How does Metrics server work](#1a-how-does-metrics-server-work)
-2. 
+2. [Logging](#2-logging-)
 
 
 
@@ -21,3 +21,9 @@ performance metrics from pods and exposes them through kubelet api to metrics se
 run following command - ```kubectl top node``` to check the memory and CPU utilization of each node. 
 
 We can also view performance metrics of pods using ```kubectl top pod``` command.
+
+## 2. Logging:
+
+Use below command to view logs of kubernetes pod.
+
+```kubectl logs -f pod_name -c container_name```
