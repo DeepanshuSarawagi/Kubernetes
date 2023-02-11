@@ -250,4 +250,12 @@ installing them as a service.
 ## 9. Multiple Schedulers:
 
 A kubernetes cluster can have multiple schedulers at a time. We can create deployments or pods instructing to use custom
-scheduler configured by us to schedule pods. Default scheduler is named as ```default-scheduler```. 
+scheduler configured by us to schedule pods. Default scheduler is named as ```default-scheduler```.
+
+## 10. Scheduler Profiles:
+
+The PODs which are waiting to be created first end up in scheduling queue. At this stage, PODs are sorted based on the priority
+defined (Refer [high-priority](high-priority.yaml)). Once the priorityClass is created, you need to define it in 
+pods definition file [pods-high-priority](pods-high-priority.yaml).
+
+

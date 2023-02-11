@@ -4,3 +4,5 @@ profiles:
   - schedulerName: custom-scheduler-1
 leaderElection:
   leaderElect: true
+  resourceNamespace: kube-system
+  resourceName: lock-object-custom-scheduler-1

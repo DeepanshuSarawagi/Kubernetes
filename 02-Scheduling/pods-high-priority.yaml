@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: high-priority-pod
+  labels:
+    name: simple-webapp
+    tier: frontend
+spec:
+  priorityClassName: high-priority
+  containers:
+    - name: simple-webapp-color
+      image: mmumshad/simple-webapp-color
+      resources:
+        requests:
+          memory: "12Gi"
+          cpu: "10"
