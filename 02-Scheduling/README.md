@@ -250,4 +250,4 @@ installing them as a service.
 ## 9. Multiple Schedulers:
 
 A kubernetes cluster can have multiple schedulers at a time. We can create deployments or pods instructing to use custom
-scheduler confgured by us to schedule pods. 
+scheduler configured by us to schedule pods. Default scheduler is named as ```default-scheduler```. 
