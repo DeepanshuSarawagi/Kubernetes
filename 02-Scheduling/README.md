@@ -10,6 +10,8 @@
 6. [Resource Requests and Limits](#6-resource-requirements-and-limits-)
 7. [DaemonSets](#7-daemonsets-)
 8. [Static Pods](#8-static-pods-)
+9. [Multiple Scheduler](#9-multiple-schedulers-)
+10. [Scheduler Profiles](#10-scheduler-profiles-)
  
 
 ## 1. Manual scheduling:
@@ -258,4 +260,23 @@ The PODs which are waiting to be created first end up in scheduling queue. At th
 defined (Refer [high-priority](high-priority.yaml)). Once the priorityClass is created, you need to define it in 
 pods definition file [pods-high-priority](pods-high-priority.yaml).
 
+Then the pods enter the filtering stage.
 
+Then it enters the scoring phase. This is where the nodes are scored with different weights based on free resources.
+
+Node which gets the higher score is where the pods are bound. This phase is called Binding.
+
+A plugin is used in each of these phases to perform these operations
+
+- Scheduling Queue: PrioritySort
+- Filtering: NodeResourcesFit, NodeName, NodeUnschedulable, TaintTolerations, NodePort, NodeAffinity
+- Scoring: NodeResourcesFit, ImageLocality, TaintTolerations, NodeAffinity
+- Binding: DefaultBinder
+
+At each stage there is an extension point in which plugin can be plugged to. Below are different extension points available for
+each stage.
+
+- Scheduling Queue: queueSort
+- Filtering: preFilter, filter, postFilter
+- Scoring: preScore, score, reserve, permit
+- Binding: preBind, bind, postBind

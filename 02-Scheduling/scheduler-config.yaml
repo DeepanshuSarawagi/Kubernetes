@@ -2,6 +2,18 @@ apiVersion: kubescheduler.config.k8s.io/v1
 kind: KubeSchedulerConfiguration
 profiles:
   - schedulerName: custom-scheduler-1
+    plugins:
+      score:
+        disabled:
+          - name: TaintToleration
+        enabled:
+          - name: myCustomPluginA
+          - name: myCustomPluginB
+      preScore:
+        enabled:
+          - name: ImageLocality
+          - name: NodeAffinity
+          - name: NodeResourcesFit
 leaderElection:
   leaderElect: true
   resourceNamespace: kube-system
