@@ -44,3 +44,6 @@ The first command should always be a valid executable.
 [ENTRYPOINT] is the command to which you can append arguments in the docker run command.
 
 If we specify both [CMD] and [ENTRYPOINT] then CMD instruction would be appended with ENTRYPOINT instruction.
+
+When it comes to pod definition, if we want to specify any argument which docker run commands expects, it can go into the args
+of the spec section in [pod-definition.yaml](pod-args.yaml). 
