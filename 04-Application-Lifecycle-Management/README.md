@@ -3,6 +3,9 @@
 ## Table of contents:
 
 1. [Rollout and Rollback](#1-rolling-updates-and-rollbacks-)
+   1. [Deployment Strategy](#1a-deployment-strategy-)
+2. [Application Commands](#2-application-commands-)
+3. 
 
 
 ## 1. Rolling updates and Rollbacks:
@@ -31,3 +34,13 @@ To apply changes to a pod, we use the ```kubectl apply -f deployment.yaml``` com
 Kubernetes deployments, allow you to rollback an update if there is an issue with newer version. We can use following command
 ```kubectl rollout undo deployment/DEPLOYMENT_NAME```. Kubernetes will destroy the pods in new replicas set and will bring the
 pods up in old replica set.
+
+## 2. Application Commands:
+
+By default, docker does not attach a terminal to a container when it is run. To have a container running as long as we want,
+we need to pass commands and arguments in the CMD arg of Docker file. The commands and arguments should be a JSON-array. 
+The first command should always be a valid executable.
+
+[ENTRYPOINT] is the command to which you can append arguments in the docker run command.
+
+If we specify both [CMD] and [ENTRYPOINT] then CMD instruction would be appended with ENTRYPOINT instruction.
