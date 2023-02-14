@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    type: example-pod
+  name: env-pod-1
+spec:
+  containers:
+    - name: env-pod-1
+      image: kodekloud/simple-webapp
+      env:
+        - name: app
+          value: red

@@ -47,3 +47,7 @@ If we specify both [CMD] and [ENTRYPOINT] then CMD instruction would be appended
 
 When it comes to pod definition, if we want to specify any argument which docker run commands expects, it can go into the args
 of the spec section in [pod-definition.yaml](pod-args.yaml). 
+
+## 3. Environment Variables
+
+We can configure environment variables required by pods using env field under spec section of [pod-env.yaml](pod-env.yaml)
