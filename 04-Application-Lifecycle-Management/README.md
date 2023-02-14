@@ -5,7 +5,7 @@
 1. [Rollout and Rollback](#1-rolling-updates-and-rollbacks-)
    1. [Deployment Strategy](#1a-deployment-strategy-)
 2. [Application Commands](#2-application-commands-)
-3. 
+3. [Environment Variables](#3-environment-variables-)
 
 
 ## 1. Rolling updates and Rollbacks:
@@ -48,6 +48,32 @@ If we specify both [CMD] and [ENTRYPOINT] then CMD instruction would be appended
 When it comes to pod definition, if we want to specify any argument which docker run commands expects, it can go into the args
 of the spec section in [pod-definition.yaml](pod-args.yaml). 
 
-## 3. Environment Variables
+## 3. Environment Variables:
 
 We can configure environment variables required by pods using env field under spec section of [pod-env.yaml](pod-env.yaml)
+
+## 4. Config maps
+
+We can manage the environment variables required for multiple pods centrally using config maps. Config maps are used to pass
+configuration data in the form of key-value pair.
+
+### 4a. Imperative way to create cm:
+
+We can use following kubectl command to create config maps imperatively.
+
+```kubectl create configmap app_config --from-literal=APP_COLOR=Blue --from-literal=APP_MODE=Dev```
+
+Another way to create configmaps is using file. We can pass the file with required data to create config maps.
+
+```kubectl create configmap app_config --from-file=app_config.properties```
+
+### 4b. Declarative way to create cm:
+
+We can use the [config-maps.yaml](config-maps.yaml) to create configmaps. And then use the kubectl command to create the
+configmaps
+
+```kubectl create -f config-maps.yaml```
+
+### 4c. Inject configmpas into PODs
+
+Once the configmaps are create, we need to inject them into pods. A sample pod definition yaml can be found [here](pods-config-maps.yaml).
