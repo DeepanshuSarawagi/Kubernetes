@@ -11,4 +11,3 @@ spec:
       envFrom:
         - configMapRef:
             name: APP_CONFIG
-            

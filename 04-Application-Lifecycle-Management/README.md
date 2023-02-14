@@ -6,6 +6,10 @@
    1. [Deployment Strategy](#1a-deployment-strategy-)
 2. [Application Commands](#2-application-commands-)
 3. [Environment Variables](#3-environment-variables-)
+4. [Config Maps](#4-config-maps-)
+   1. [Imperative Way](#4a-imperative-way-to-create-cm-)
+   2. [Declarative Way](#4b-declarative-way-to-create-cm-)
+   3. [Inject cm into PODs](#4c-inject-configmpas-into-pods-)
 
 
 ## 1. Rolling updates and Rollbacks:
@@ -52,7 +56,7 @@ of the spec section in [pod-definition.yaml](pod-args.yaml).
 
 We can configure environment variables required by pods using env field under spec section of [pod-env.yaml](pod-env.yaml)
 
-## 4. Config maps
+## 4. Config maps:
 
 We can manage the environment variables required for multiple pods centrally using config maps. Config maps are used to pass
 configuration data in the form of key-value pair.
@@ -74,6 +78,6 @@ configmaps
 
 ```kubectl create -f config-maps.yaml```
 
-### 4c. Inject configmpas into PODs
+### 4c. Inject configmpas into PODs:
 
 Once the configmaps are create, we need to inject them into pods. A sample pod definition yaml can be found [here](pods-config-maps.yaml).
