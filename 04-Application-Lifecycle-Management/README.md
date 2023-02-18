@@ -81,3 +81,22 @@ configmaps
 ### 4c. Inject configmpas into PODs:
 
 Once the configmaps are create, we need to inject them into pods. A sample pod definition yaml can be found [here](pods-config-maps.yaml).
+
+## 5. Configure secrets in application:
+
+Secrets are used to store sensitive information like password and keys  in an encoded format. There are two ways to create secrets.
+
+Imperative way
+
+:  ```
+   kubectl create secret generic SECRET_NAME --from-literal=KEY=VALUE ```
+
+: ```kubectcl create secret generic SECRET_NAME --from-file=app_secrets.properties```
+
+Declarative way
+
+: For this approach, we create a definition file and then use ```kubectl create -f secrets.yaml``` to create kube secrets object.
+We need to ensure to enter base-encoded secrets data in definition yaml file.
+
+Once the secrets are created, we can inject them into PODs for them to use it. Refer [secrets.yaml](secrets.yaml) and 
+[pod-secrets](pod-secrets.yaml) for reference.
