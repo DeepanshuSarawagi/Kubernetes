@@ -12,6 +12,7 @@
    3. [Inject cm into PODs](#4c-inject-configmpas-into-pods-)
 5. [Secrets in Kubernetes](#5-configure-secrets-in-application-)
 6. [Encrypt data at rest](#6-encrypt-data-at-rest-)
+7. [Multi Container PODs](#7-multi-container-pods-)
 
 
 ## 1. Rolling updates and Rollbacks:
@@ -110,3 +111,30 @@ can access the secrets since they are just encoded but not encrypted.
 
 To encrypt the data in etcd, we can follow this [link](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/).
 
+## 7. Multi-container pods:
+
+Multi-container pods can scale up and down together with same lifecycle. They share same n/w space and has access to same
+storage volumes. To create multi-container pod, add the new container information to the [pod-definition](multicontainer.yaml) file.
+
+## 8. Init containers:
+
+Init containers are exactly like regular containers, except:
+
+- Init containers always run to completion.
+- Each init container must complete successfully before the next one starts.
+
+If a Pod's init container fails, the kubelet repeatedly restarts that init container until it succeeds. However, if the 
+Pod has a restartPolicy of Never, and an init container fails during startup of that Pod, Kubernetes treats the overall 
+Pod as failed.
+
+Differences from regular containers
+
+: Init containers support all the fields and features of app containers, including resource limits, volumes, and security 
+settings. However, the resource requests and limits for an init container are handled differently, as documented in Resources.
+
+: Also, init containers do not support lifecycle, livenessProbe, readinessProbe, or startupProbe because they must run to 
+completion before the Pod can be ready.
+
+: If you specify multiple init containers for a Pod, kubelet runs each init container sequentially. Each init container 
+must succeed before the next can run. When all the init containers have run to completion, kubelet initializes the 
+application containers for the Pod and runs them as usual.
