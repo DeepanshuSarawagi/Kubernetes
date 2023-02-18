@@ -10,6 +10,8 @@
    1. [Imperative Way](#4a-imperative-way-to-create-cm-)
    2. [Declarative Way](#4b-declarative-way-to-create-cm-)
    3. [Inject cm into PODs](#4c-inject-configmpas-into-pods-)
+5. [Secrets in Kubernetes](#5-configure-secrets-in-application-)
+6. [Encrypt data at rest](#6-encrypt-data-at-rest-)
 
 
 ## 1. Rolling updates and Rollbacks:
@@ -100,3 +102,11 @@ We need to ensure to enter base-encoded secrets data in definition yaml file.
 
 Once the secrets are created, we can inject them into PODs for them to use it. Refer [secrets.yaml](secrets.yaml) and 
 [pod-secrets](pod-secrets.yaml) for reference.
+
+## 6. Encrypt data at rest:
+
+By default, encryption is not enabled for Secrets which are stored in ETCD. Anyone who has access to kube controller utility
+can access the secrets since they are just encoded but not encrypted. 
+
+To encrypt the data in etcd, we can follow this [link](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/).
+
