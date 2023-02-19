@@ -1,5 +1,12 @@
 # Cluster Maintenance in Kubernetes
 
+## Table of contents:
+
+1. [OS Upgrades](#1-os-upgrades-)
+2. [Cluster Upgrades](#2-cluster-upgrades-)
+   1. [Upgrade process](#2a-upgrade-process-)
+3. 
+
 ## 1. OS upgrades:
 
 Whenever a node goes offline due to issues or patches, kubernetes controller manager waits for 5 mins for pods to come online.
@@ -46,7 +53,7 @@ node/node01 drained
 
 ```
 
-## 2. Cluster upgrade process:
+## 2. Cluster upgrades:
 
 Basic info
 : Every kubernetes components has it own release version. Since Kubernetes as a product has several components tied together, 
@@ -59,3 +66,18 @@ can be at v1.23 (x-2).
 
 : Kubernetes supports upto version x-2 from its current stable release. Let's say, if kubernetes has released v1.26, it supports
 components until v1.24.
+
+If we have bootstrapped the cluster using kubeadm tool, following commands are useful for cluster upgrades.
+
+```shell
+$kubeadm upgrade plan
+
+$kubeadm upgrade apply
+```
+
+### 2a. Upgrade process: 
+
+UUpgrade process requires two major steps.
+
+- First, upgrade the master/controlplane node.
+- Second, upgrade the worker nodes.
