@@ -45,3 +45,17 @@ pod/hr-app evicted
 node/node01 drained
 
 ```
+
+## 2. Cluster upgrade process:
+
+Basic info
+: Every kubernetes components has it own release version. Since Kubernetes as a product has several components tied together, 
+the main component of it is kube-api-server. Thus, none of the other component version should be higher than kube-api-server.
+
+: For example, if kube-api-server is at v1.25, controller-manager and kube-scheduler can be at v1.24 (x-1) and kubelet and kube-proxy
+can be at v1.23 (x-2). 
+
+: However, in case of kubectl, it can be at v1.26 (x+1), v1.25 (x) or at 1.24 (x-1).
+
+: Kubernetes supports upto version x-2 from its current stable release. Let's say, if kubernetes has released v1.26, it supports
+components until v1.24.
