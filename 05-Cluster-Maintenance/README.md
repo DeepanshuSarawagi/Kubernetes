@@ -110,6 +110,15 @@ To view the status of the snapshot, use following command
 
 ```shell
 $ETCDCTL_API=3 etcdctl snapshot status snapshot.db
+
+# Example
+
+$ETCDCTL_API=3 etcdctl --endpoints=https://[127.0.0.1]:2379 \
+> --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+> --cert=/etc/kubernetes/pki/etcd/server.crt \
+> --key=/etc/kubernetes/pki/etcd/server.key \
+> snapshot save /opt/snapshot-pre-boot.db
+Snapshot saved at /opt/snapshot-pre-boot.db
 ```
 
 To restore the cluster from this snapshot, use the following procedure
