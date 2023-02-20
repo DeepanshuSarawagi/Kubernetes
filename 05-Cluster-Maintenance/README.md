@@ -81,3 +81,10 @@ UUpgrade process requires two major steps.
 
 - First, upgrade the master/controlplane node.
 - Second, upgrade the worker nodes.
+
+For detailed steps on upgrading clusters using kubeadm, follow these [instructions](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/).
+
+Note
+
+: To reduce the time for upgrade using kubeadm, we can run the following command to pre-pull the images ```kubeadm config images pull```.
+
