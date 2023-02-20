@@ -88,3 +88,36 @@ Note
 
 : To reduce the time for upgrade using kubeadm, we can run the following command to pre-pull the images ```kubeadm config images pull```.
 
+## 3. Backup and Restore methods:
+
+Easiest way to query all objects in all namespaces and save it in a pod-definition yaml file is using following command:
+
+```shell
+$kubectl get all --all-namespaces -o yaml > all-configs.yaml
+```
+
+As we know that etcd cluster is the place where all cluster info is saved as db, we can backup the etcd cluster. The cluster
+data is written in a directory. To locate where data is being written, lookout for ```--data-dir``` config in etcd.service
+file or lookout for pod-definition file of etcd cluster.
+
+ETCD also comes up with a built-in snapshot tool. We can take the snapshot of etcd data using etcdctl utility.
+
+```shell
+$ETCDCTL_API=3 etcdctl snapshot save snapshot.db
+```
+
+To view the status of the snapshot, use following command
+
+```shell
+$ETCDCTL_API=3 etcdctl snapshot status snapshot.db
+```
+
+To restore the cluster from this snapshot, use the following procedure
+
+- Stop the kube-apiserver service.
+- Execute ```ETCDCTL_API=3 etcdctl snapshot restore snapshot.db --data-dir /var/lib/etcd-from-backup```
+  - We need to specify the location of data-dir since a new cluster is created and all data associated to it should be written.
+    This also prevents a new cluster member from accidentally joining the existing cluster.
+- Configure the etcd configuration file to use the new --data-dir.
+- Restart the etcd service.
+- Restart the kube-apiserver service.
