@@ -51,6 +51,7 @@ b. Set up the repository
      --add-repo \\\
      https://download.docker.com/linux/centos/docker-ce.repo (We are updating the manager to centos package manager due to [architecture issue](https://access.redhat.com/discussions/6249651).)
    - $sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+   - $sudo systemctl enable docker
    - $sudo systemctl start docker
    - $sudo systemctl status docker
 
@@ -97,9 +98,12 @@ Your Kubernetes control-plane has initialized successfully!
 
 To start using your cluster, you need to run the following as a regular user:
 
+```shell
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+```
 
 Alternatively, if you are the root user, you can run:
 
