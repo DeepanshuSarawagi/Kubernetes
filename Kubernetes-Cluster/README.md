@@ -161,3 +161,24 @@ You will notice that PODs are running on worker node. To validate the same, you 
 on which node, pod is running.
 
 - $kubectl get pods -o wide
+
+## 7. Re-join worker node with master node
+
+Note:
+
+: Let's say that you have shutdown your master node or if the token has expired since the TTL of token is 24 hours, then we
+would be in a situation to re-join the worker node with master.
+To achieve that, run following commands.
+
+```shell
+
+# Run this command on controller/master node:
+
+$ kubeadm token generate # This will generate a token. 
+$ kubeadm token create <above generated token> --print-join-command  # This should display the join command
+
+# Run the output of second command on worker node to re-join it with master
+
+$ kubeadm join 192.168.77.128:6443 --token xxxxxxx \
+--discovery-token-ca-cert-hash sha256:xxxxxxx
+```

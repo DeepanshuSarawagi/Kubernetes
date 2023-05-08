@@ -182,7 +182,7 @@ Daemon Sets are like replica sets which runs multiple instances of pods but it r
 Whenever a new node is added to a cluster, a replica of pod is added to that node. DaemonSet ensures, a copy of pod is always
 available on every node of the cluster. 
 
-Uses cases:
+Use cases:
 
 : Let's say if we want to deploy a monitoring agent on every node of a cluster then daemon set is a perfect fit for this
 requirement.
