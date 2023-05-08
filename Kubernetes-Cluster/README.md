@@ -127,9 +127,9 @@ kubeadm join 192.168.77.132:6443 --token --discovery-token-ca-cert-hash sha256:a
 
 We need to perform this step to create the network which will enable the communication between controller and worker nodes.
 
-- $https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/tigera-operator.yaml
+- $wget https://raw.githubusercontent.com/projectcalico/calico/v3.25.1/manifests/tigera-operator.yaml
 - $kubectl create -f tigera-operator.yaml
-- $https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/custom-resources.yaml
+- $wget https://raw.githubusercontent.com/projectcalico/calico/v3.25.1/manifests/custom-resources.yaml
 - Edit the cidr range in custom-resources.yaml 
   - We need to specify the same cidr range as what we specified in the kubeadm command. I chose 10.244.0.0/16
   - Snippet from my file
