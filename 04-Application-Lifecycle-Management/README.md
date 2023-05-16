@@ -2,17 +2,17 @@
 
 ## Table of contents:
 
-1. [Rollout and Rollback](#1-rolling-updates-and-rollbacks-)
-   1. [Deployment Strategy](#1a-deployment-strategy-)
-2. [Application Commands](#2-application-commands-)
-3. [Environment Variables](#3-environment-variables-)
-4. [Config Maps](#4-config-maps-)
-   1. [Imperative Way](#4a-imperative-way-to-create-cm-)
-   2. [Declarative Way](#4b-declarative-way-to-create-cm-)
-   3. [Inject cm into PODs](#4c-inject-configmpas-into-pods-)
-5. [Secrets in Kubernetes](#5-configure-secrets-in-application-)
-6. [Encrypt data at rest](#6-encrypt-data-at-rest-)
-7. [Multi Container PODs](#7-multi-container-pods-)
+1. [Rollout and Rollback](#1-rolling-updates-and-rollbacks)
+   1. [Deployment Strategy](#1a-deployment-strategy)
+2. [Application Commands](#2-application-commands)
+3. [Environment Variables](#3-environment-variables)
+4. [Config Maps](#4-config-maps)
+   1. [Imperative Way](#4a-imperative-way-to-create-cm)
+   2. [Declarative Way](#4b-declarative-way-to-create-cm)
+   3. [Inject cm into PODs](#4c-inject-configmpas-into-pods)
+5. [Secrets in Kubernetes](#5-configure-secrets-in-application)
+6. [Encrypt data at rest](#6-encrypt-data-at-rest)
+7. [Multi Container PODs](#7-multi-container-pods)
 
 
 ## 1. Rolling updates and Rollbacks:

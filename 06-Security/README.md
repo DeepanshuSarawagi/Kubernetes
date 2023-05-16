@@ -1,6 +1,10 @@
 # Security concepts in Kubernetes
 
-## Security primitives:
+## Table of contents:
+
+1. [Security Primitives](#1-security-primitives)
+
+## 1. Security primitives:
 
 - kube-apiserver is at the center of all operations within kubernetes.
 - Who can access the kube-apiserver is defined by the Authentication mechanism.
@@ -18,3 +22,4 @@
   - Webhook mode
 - All communication between kube-apiserver and other components such as etcd server, kube-proxy, kube-controller manager,
   kube-scheduler are encrypted using TLS certificates.
+- Communication between different application pods can be restricted using network policies.

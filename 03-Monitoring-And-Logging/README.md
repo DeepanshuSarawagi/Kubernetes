@@ -2,9 +2,9 @@
 
 ## Table of contents
 
-1. [Metrics Server](#1-metrics-server-)
+1. [Metrics Server](#1-metrics-server)
     1. [How does Metrics server work](#1a-how-does-metrics-server-work)
-2. [Logging](#2-logging-)
+2. [Logging](#2-logging)
 
 
 

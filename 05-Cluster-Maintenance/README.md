@@ -2,10 +2,10 @@
 
 ## Table of contents:
 
-1. [OS Upgrades](#1-os-upgrades-)
-2. [Cluster Upgrades](#2-cluster-upgrades-)
+1. [OS Upgrades](#1-os-upgrades)
+2. [Cluster Upgrades](#2-cluster-upgrades)
    1. [Upgrade process](#2a-upgrade-process-)
-3. [Backup and Restore](#3-backup-and-restore-methods-)
+3. [Backup and Restore](#3-backup-and-restore-methods)
 
 ## 1. OS upgrades:
 

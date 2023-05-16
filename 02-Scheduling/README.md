@@ -2,16 +2,16 @@
 
 ## Table of contents
 
-1. [Manual Scheduling](#1-manual-scheduling-)
-2. [Labels and Selectors](#2-labels-and-selectors-)
-3. [Taints and Tolerations](#3-taints-and-tolerations-)
-4. [Node Selectors](#4-node-selectors-)
-5. [Node Affinity](#5-node-affinity-)
-6. [Resource Requests and Limits](#6-resource-requirements-and-limits-)
-7. [DaemonSets](#7-daemonsets-)
-8. [Static Pods](#8-static-pods-)
-9. [Multiple Scheduler](#9-multiple-schedulers-)
-10. [Scheduler Profiles](#10-scheduler-profiles-)
+1. [Manual Scheduling](#1-manual-scheduling)
+2. [Labels and Selectors](#2-labels-and-selectors)
+3. [Taints and Tolerations](#3-taints-and-tolerations)
+4. [Node Selectors](#4-node-selectors)
+5. [Node Affinity](#5-node-affinity)
+6. [Resource Requests and Limits](#6-resource-requirements-and-limits)
+7. [DaemonSets](#7-daemonsets)
+8. [Static Pods](#8-static-pods)
+9. [Multiple Scheduler](#9-multiple-schedulers)
+10. [Scheduler Profiles](#10-scheduler-profiles)
  
 
 ## 1. Manual scheduling:
