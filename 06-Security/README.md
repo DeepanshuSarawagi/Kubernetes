@@ -3,6 +3,7 @@
 ## Table of contents:
 
 1. [Security Primitives](#1-security-primitives)
+2. [Authentication-Basics](#2-authentication)
 
 ## 1. Security primitives:
 
@@ -23,3 +24,25 @@
 - All communication between kube-apiserver and other components such as etcd server, kube-proxy, kube-controller manager,
   kube-scheduler are encrypted using TLS certificates.
 - Communication between different application pods can be restricted using network policies.
+
+## 2. Authentication:
+
+We can authenticate the users to access kube-apiserver by updating the service or yaml file. Following flag has to be added
+in the service/yaml file. ```--basic-auth-file=user-details.csv```.
+
+To authenticate using basic credentials we can pass the credentials in curl command like this.
+
+```shell
+curl -k -v https://master-node-ip:6443/api/v1/pods -u "user1:xxxxxxxx"
+```
+
+We can also use the static token file instead of password file. Specify the file in kube-apiserver.service/yaml file like this
+```--token-auth-file=user-token-file.csv```
+
+To use token in curl command:
+
+```shell
+curl --request GET -sL \
+     --url 'https://master-node-ip:6443/api/v1/pods'\
+     --header "Authorization: Bearer xwgbrgbflsvbufhkbvusfbrgwrbgrwg"'
+```
