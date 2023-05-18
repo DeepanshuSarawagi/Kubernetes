@@ -5,6 +5,9 @@
 1. [Security Primitives](#1-security-primitives)
 2. [Authentication-Basics](#2-authentication)
 3. [TLS Basics](#3-tls-introduction)
+   1. [Server certificates in Kube](#3a-server-certificates-in-kube)
+   2. [Client certificates in Kube](#3b-client-certificates-in-kube)
+4. 
 
 ## 1. Security primitives:
 
@@ -50,3 +53,31 @@ curl --request GET -sL \
 
 ## 3. TLS Introduction:
 
+There are two kinds of certificates:
+
+- Server certificates.
+- Client certificates.
+
+Kubernetes cluster requires certificates to secure all the communication between its different components.
+
+### 3a. Server certificates in Kube:
+
+Kube-api server exposes HTTPS service that other kube components use to manage the cluster.
+
+Another kube-component which uses server certificates is etcd-server. The etcd server stores information of the cluster, hence
+it requires certificate key pair for itself.
+
+Kubelet server also exposes HTTPS API endpoint on worker nodes that the kube-apiserver talks to. This also requires server
+certificates.
+
+### 3b. Client certificates in Kube:
+
+The clients who access the kube-apiserver are the users through Kubectl Rest API.
+
+Below are several clients within Kubernetes which requires client certificates:
+
+- Kube's administrators to access kube-apiserver to control server through Kubectl Rest API.
+- Kube-scheduler talks to kube-apiserver to schedule pods on right worker nodes.
+- Kube-Control manager also accesses kube-apiserver hence it requires it's own client certs and key.
+- Kube-proxy requires client certificate to authenticate with kube-apiserver.
+- Kube-apiserver is the only component which talks to etcd-server. Hence, it requires it's own client certs and key for communication.
