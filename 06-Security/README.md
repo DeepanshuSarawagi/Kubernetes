@@ -4,6 +4,7 @@
 
 1. [Security Primitives](#1-security-primitives)
 2. [Authentication-Basics](#2-authentication)
+3. [TLS Basics](#3-tls-introduction)
 
 ## 1. Security primitives:
 
@@ -46,3 +47,6 @@ curl --request GET -sL \
      --url 'https://master-node-ip:6443/api/v1/pods'\
      --header "Authorization: Bearer xwgbrgbflsvbufhkbvusfbrgwrbgrwg"'
 ```
+
+## 3. TLS Introduction:
+
