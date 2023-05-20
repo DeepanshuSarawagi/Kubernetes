@@ -81,3 +81,32 @@ Below are several clients within Kubernetes which requires client certificates:
 - Kube-Control manager also accesses kube-apiserver hence it requires it's own client certs and key.
 - Kube-proxy requires client certificate to authenticate with kube-apiserver.
 - Kube-apiserver is the only component which talks to etcd-server. Hence, it requires it's own client certs and key for communication.
+
+### 3c. Generating certificates in Kubernetes
+
+#### CA Certificates:
+
+We are going to create self-signed CA certs. For all certs, we will use this CA key-pair to sign them.
+
+```shell
+openssl genrsa -out ca.key 2048
+
+openssl req -new -key ca.key -subj "\CN=Kube-CA" -out ca.csr
+
+openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
+```
+
+#### Client certificates for Admin user:
+
+This certificate will be used by admin user to authenticate kube-control with.
+
+```shell
+openssl genrsa -out admin.key 2048
+
+openssl req -new -key admin.key -subj "\CN=Kube-admin" -out admin.csr
+
+openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -out admin.crt
+
+# We have signed the admin certificate using CA key pair which makes it a valid certificate
+```
+
