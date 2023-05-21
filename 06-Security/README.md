@@ -96,9 +96,15 @@ openssl req -new -key ca.key -subj "\CN=Kube-CA" -out ca.csr
 openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
 ```
 
-#### Client certificates for Admin user:
+#### Client certificates:
 
 This certificate will be used by admin user to authenticate kube-control with.
+
+Name must be prefixed for following components while creating client certificates to authenticate itself with kube-apiserver.
+
+- Kube-scheduler is part of the system component hence its name must be prefixed with keyword system in the certificate.
+- Kube-controller-manager is part of the system component hence its name must be prefixed with keyword system in the certificate.
+- Kube-proxy is part of the system component hence its name must be prefixed with keyword system in the certificate.
 
 ```shell
 openssl genrsa -out admin.key 2048
@@ -110,3 +116,29 @@ openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -out admin.crt
 # We have signed the admin certificate using CA key pair which makes it a valid certificate
 ```
 
+### #### Server certificates:
+
+Name must be prefixed for following components while creating server certificates to authenticate itself with etcd-server.
+
+- 
+
+```shell
+openssl genrsa -out etcd-server.key 2048
+
+openssl req -new -key etcd-server.key -subj "\CN=etcd-server" -out etcd-server.csr
+
+openssl x509 -req -in etcd-server.csr -CA ca.crt -CAkey ca.key -out etcd-server.crt
+
+# We have signed the admin certificate using CA key pair which makes it a valid certificate
+```
+
+kube-apiserver certificate is the most important certificate in the kubernetes environment. Kube-apiserver component goes by
+many component, hence, all the aliases (SANs) must be added in the certificate signing request using [apiserver.cnf](apiserver.cnf).
+
+```shell
+openssl genrsa -out apiserver.key 2048
+
+openssl req -new -key apiserver.key -subj "\CN=kube-apiserver" -out kube-apiserver.csr --config apiserver.cnf
+
+openssl x509 -req -in apiserver.csr -CA ca.crt -CAkey ca.key -out apiserver.crt
+```
