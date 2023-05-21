@@ -47,14 +47,14 @@ a. Remove older version of Docker Engine
 
 b. Set up the repository
 ```
-   - $sudo yum install -y yum-utils
-   - $sudo yum-config-manager \
+   $sudo yum install -y yum-utils
+   $sudo yum-config-manager \
      --add-repo \
      https://download.docker.com/linux/centos/docker-ce.repo # (We are updating the manager to centos package manager due to [architecture issue](https://access.redhat.com/discussions/6249651).)
-   - $sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
-   - $sudo systemctl enable docker
-   - $sudo systemctl start docker
-   - $sudo systemctl status docker
+   $sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+   $sudo systemctl enable docker
+   $sudo systemctl start docker
+   $sudo systemctl status docker
 ```
 
 ### Note:
