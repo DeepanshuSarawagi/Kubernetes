@@ -142,3 +142,6 @@ openssl req -new -key apiserver.key -subj "\CN=kube-apiserver" -out kube-apiserv
 
 openssl x509 -req -in apiserver.csr -CA ca.crt -CAkey ca.key -out apiserver.crt
 ```
+
+If something is wrong with kube-apiserver certificate or etcd server certificate, then kubectl commands may not work to troubleshoot.
+In this case we need to inspect the logs of the container using docker commands.
