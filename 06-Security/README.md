@@ -7,7 +7,8 @@
 3. [TLS Basics](#3-tls-introduction)
    1. [Server certificates in Kube](#3a-server-certificates-in-kube)
    2. [Client certificates in Kube](#3b-client-certificates-in-kube)
-   3. 
+   3. [Generating certificates in Kube](#3c-generating-certificates-in-kubernetes)
+   4. [Certificate API](#3d-kubernetes-certificate-api)
 
 ## 1. Security primitives:
 
@@ -116,7 +117,7 @@ openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -out admin.crt
 # We have signed the admin certificate using CA key pair which makes it a valid certificate
 ```
 
-### #### Server certificates:
+#### Server certificates:
 
 Name must be prefixed for following components while creating server certificates to authenticate itself with etcd-server.
 
@@ -146,7 +147,7 @@ openssl x509 -req -in apiserver.csr -CA ca.crt -CAkey ca.key -out apiserver.crt
 If something is wrong with kube-apiserver certificate or etcd server certificate, then kubectl commands may not work to troubleshoot.
 In this case we need to inspect the logs of the container using docker commands.
 
-### Kubernetes Certificate API:
+### 3d. Kubernetes Certificate API:
 
 Kubernetes has a builtin certificate API which can sign a certificate, issue the certificate and renew the certificate on our
 behalf.
