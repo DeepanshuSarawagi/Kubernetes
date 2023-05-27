@@ -7,7 +7,7 @@
 3. [TLS Basics](#3-tls-introduction)
    1. [Server certificates in Kube](#3a-server-certificates-in-kube)
    2. [Client certificates in Kube](#3b-client-certificates-in-kube)
-4. 
+   3. 
 
 ## 1. Security primitives:
 
@@ -145,3 +145,33 @@ openssl x509 -req -in apiserver.csr -CA ca.crt -CAkey ca.key -out apiserver.crt
 
 If something is wrong with kube-apiserver certificate or etcd server certificate, then kubectl commands may not work to troubleshoot.
 In this case we need to inspect the logs of the container using docker commands.
+
+### Kubernetes Certificate API:
+
+Kubernetes has a builtin certificate API which can sign a certificate, issue the certificate and renew the certificate on our
+behalf.
+
+We can create a certificate signing request object. 
+
+Steps to create CSR using API:
+
+- Run openssl command to generate private key and CSR.
+- Send the CSR to kubernetes API to get it signed using kube-apiserver-client.
+  - Refer to [kubecsr.yaml](kubecsr.yaml) for a sample CSR object.
+- Run below kubectl commands to get the certificate.
+
+```shell
+kubectl apply -f kubecsr.yaml
+
+kubectl get csr # to view the csr
+kubectl certificate approve <csr name>
+```
+
+Few things to note: 
+: kube controller-manager has builtin certificate signer. In-order for us to use the kubectl to approve and sign the request,
+we must ensure to pass on the following commands args to kube-apiserver configuration file.
+cluster-signing-cert-file: /etc/kubernetes/pki/ca.crt
+cluster-signing-key-file: /etc/kubernetes/pki/ca.key
+
+Following [Kubernetes document](https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/#normal-user)
+shows how to issue a certificate to a normal user.

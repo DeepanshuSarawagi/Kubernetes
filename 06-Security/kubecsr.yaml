@@ -1,0 +1,16 @@
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: deepsarawagi
+spec:
+  request:
+    xxxxxxxxxxxxxxxxxxxxxxxx==   # this has to be csr in base64 encoded format
+  usages:
+    - digital signature
+    - key encipherment
+    - client auth
+  groups:
+    - system:authenticated
+  signerName:
+    kubernetes.io/kube-apiserver-client
+  username: deepsarawagi
