@@ -176,3 +176,45 @@ cluster-signing-key-file: /etc/kubernetes/pki/ca.key
 
 Following [Kubernetes document](https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/#normal-user)
 shows how to issue a certificate to a normal user.
+
+## 4. Kubeconfig 
+
+Every user using kubectl command to query any kube object needs to authenticate itself against kube-apiserver. And following
+args needs to be specified in each API request which may get tedious for the user.
+
+```shell
+kubectl get pods --server my-server --client-key admin.key --client-certificate admin.crt --certificate-authority ca.crt
+```
+
+Hence, we can use a kubeconfig file to save all this information and pass it as a args reference like below.
+
+```shell
+kubectl get pods --kubeconfig config
+```
+
+By default, kubectl utility will look for a config file under ```~\.kube\config``` which allows us not to explicitly pass
+it every time we run kubectl commands. This config file has information such as 
+
+- clusters  # Different clusters created in an environment
+- users     # Users with appropriate roles who has access to clusters
+- contexts  # Which set of users has access to which cluster. Context naming convention is generally
+user@cluster-name
+
+You can specify multiple clusters and contexts in the same file. We can switch to different cluster by using below kubectl
+commands.
+
+```shell
+kubectl config set-context --current <context-name>
+```
+
+To view current-context, run following command
+
+```shell
+kubectl config current-context
+```
+
+To view config file, we can run following command
+
+```shell
+kubectl config view
+```
