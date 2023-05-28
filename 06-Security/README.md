@@ -218,3 +218,5 @@ To view config file, we can run following command
 ```shell
 kubectl config view
 ```
+
+Sample [config](sampleConfig) file for reference.
