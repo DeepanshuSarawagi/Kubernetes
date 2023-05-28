@@ -220,3 +220,9 @@ kubectl config view
 ```
 
 Sample [config](sampleConfig) file for reference.
+
+You can also switch to different namespace by using following command.
+
+```shell
+kubectl config set-context --current --namespace <namespace>
+```

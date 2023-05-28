@@ -8,6 +8,7 @@ contexts:
   - context:
       cluster: kubernetes
       user: kubernetes-admin
+      namespace: default
     name: kubernetes-admin@kubernetes
 current-context: kubernetes-admin@kubernetes
 kind: Config
