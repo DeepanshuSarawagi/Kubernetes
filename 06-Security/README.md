@@ -9,6 +9,8 @@
    2. [Client certificates in Kube](#3b-client-certificates-in-kube)
    3. [Generating certificates in Kube](#3c-generating-certificates-in-kubernetes)
    4. [Certificate API](#3d-kubernetes-certificate-api)
+4. [Kubeconfig](#4-kubeconfig-)
+5. [API Groups](#5-API-Groups)
 
 ## 1. Security primitives:
 
@@ -225,4 +227,19 @@ You can also switch to different namespace by using following command.
 
 ```shell
 kubectl config set-context --current --namespace <namespace>
+```
+
+## 5. API Groups:
+
+We will look into API groups responsible for cluster functionality. There are two API gropups.
+
+- Core group - /api
+- Named group - /apis
+
+We can list all the kubernetes APIs using following command:
+
+```shell
+kubectl api-resources -o wide
+
+kubectl api-resources -o name
 ```
