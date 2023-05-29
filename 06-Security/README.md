@@ -295,3 +295,20 @@ kubectl get rolebindings
 kubectl describe roles/developer
 kubectl describe rolebindings/devuser-develop-role-binding
 ```
+
+Once these objects are created, you can check relevant access without actually performing the action to test it.
+
+```shell
+$kubectl auth can-i create deployments 
+no # returns no if you do not have access
+
+$kubectl auth can-i create pods 
+yes # returns yes if you have access
+
+$kubectl auth can-i create pods --as dev-user
+yes # returns yes if dev-user has access to create pods in default namespace
+
+$kubectl auth can-i create pods --as dev-user --namespace test
+no # returns no if dev-user does not have access to create pods in test namespace
+
+```
