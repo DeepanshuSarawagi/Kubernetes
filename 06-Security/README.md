@@ -243,3 +243,35 @@ kubectl api-resources -o wide
 
 kubectl api-resources -o name
 ```
+
+## 6. Authorization:
+
+There are four kinds of authorization mechanism in Kubernetes.
+
+- Node
+- ABAC
+- RBAC
+- Webhook
+
+Node:
+
+: The kubelet accesses the kube-apiserver to read information about services, endpoints, nodes and pods. The Kubelet also
+reports information to kube-apiserver such as nodes status, pods status, events. These requests are handled by a special authorizer
+called Node Authorizer. Hence, kubelets should be part of system:nodes group and have name prefixed with system:node. Hence,
+any user with this name and belonging to group is authorized by node authorizer.
+
+ABAC:
+
+: Attributes Based Access Control is where you associate a set of users or groups with set of permissions. Each user or group
+has its own set of ABAC policies and kube-apiserver needs to be restarted for change in policy to take effect. Hence, it gets
+difficult to manage. This is where RBAC comes in.
+
+RBAC:
+
+: Role Based Access Control is where you associate users/groups with roles. We create a role with set of permissions required
+and associate subjets with it. Any change in role can be centrally managed and need not have to be done for every subject.
+
+Webhooks:
+
+: Webhook lets you manage the authorization externally and not through the built-in mechanisms. There are tools available for
+kube-apiserver to decide which users are allowed to perform operations on kubernetes cluster.
