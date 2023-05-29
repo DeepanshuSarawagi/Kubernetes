@@ -11,6 +11,9 @@
    4. [Certificate API](#3d-kubernetes-certificate-api)
 4. [Kubeconfig](#4-kubeconfig-)
 5. [API Groups](#5-API-Groups)
+6. [Authorization](#6-authorization)
+   1. [RBAC](#6a-rbac)
+7.
 
 ## 1. Security primitives:
 
@@ -275,3 +278,20 @@ Webhooks:
 
 : Webhook lets you manage the authorization externally and not through the built-in mechanisms. There are tools available for
 kube-apiserver to decide which users are allowed to perform operations on kubernetes cluster.
+
+### 6a. RBAC:
+
+We can enable RBAC by creating a Role object. Once the desired [Roles](rbac.yaml) is ready, we can create the role using
+kubectl command. Once the role is created, we need to map the user with this Role. This can be achieved by creating the
+RoleBinding object. Once the desired [RoleBinding](role-binding.yaml) specification is ready, you can create it using kubectl
+command.
+
+Here are some kubectl commands to view roles and rolebindings.
+
+```shell
+kubectl get roles
+kubectl get rolebindings
+
+kubectl describe roles/developer
+kubectl describe rolebindings/devuser-develop-role-binding
+```

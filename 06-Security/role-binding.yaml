@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: devuser-develop-role-binding
+  namespace: default
+roleRef:
+  kind: Role
+  name: developer
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+  - kind: User
+    name: devuser
+    apiGroup: rbac.authorization.k8s.io
