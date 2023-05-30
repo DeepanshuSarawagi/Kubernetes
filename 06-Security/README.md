@@ -13,6 +13,7 @@
 5. [API Groups](#5-API-Groups)
 6. [Authorization](#6-authorization)
    1. [RBAC](#6a-rbac)
+   2. [ClusterRoles and ClusterRoleBindings](#6b-clusterroles-and-clusterrolebindings)
 7.
 
 ## 1. Security primitives:
@@ -272,7 +273,7 @@ difficult to manage. This is where RBAC comes in.
 RBAC:
 
 : Role Based Access Control is where you associate users/groups with roles. We create a role with set of permissions required
-and associate subjets with it. Any change in role can be centrally managed and need not have to be done for every subject.
+and associate subjects with it. Any change in role can be centrally managed and need not have to be done for every subject.
 
 Webhooks:
 
@@ -312,3 +313,19 @@ $kubectl auth can-i create pods --as dev-user --namespace test
 no # returns no if dev-user does not have access to create pods in test namespace
 
 ```
+
+### 6b. ClusterRoles and ClusterRoleBindings:
+
+ClusterRoles and ClusterRoleBindings are created for those resources which are cluster scoped instead of scoped at namespace
+level. We need to create ClusterRoles and ClusterRoleBindings to control access to operations on Nodes, Namespace itself, 
+Persistent Volumes, CertificateSigningRequest which are some of the objects/resources scoped at cluster level.
+
+To find resources which are scoped at namespaces and cluster, we can run below commands.
+
+```shell
+$kubectl api-resources -o wide --namespaced=true
+$kubectl api-resources -o wide --namespaced=false
+```
+
+Sample [cluster-admin-role](cluster-admin-role.yaml) and [cluster-admin-role-binding](cluster-admin-role-binding.yaml) has been
+created for reference.
