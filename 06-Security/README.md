@@ -14,7 +14,7 @@
 6. [Authorization](#6-authorization)
    1. [RBAC](#6a-rbac)
    2. [ClusterRoles and ClusterRoleBindings](#6b-clusterroles-and-clusterrolebindings)
-7.
+7. [Service Accounts](#7-service-accounts)
 
 ## 1. Security primitives:
 
@@ -329,3 +329,21 @@ $kubectl api-resources -o wide --namespaced=false
 
 Sample [cluster-admin-role](cluster-admin-role.yaml) and [cluster-admin-role-binding](cluster-admin-role-binding.yaml) has been
 created for reference.
+
+## 7. Service Accounts:
+
+A service account is needed for any application to interact with kube-api-server to get info about kube objects. In order
+for service account to interact with kube-apiserver, it must be authentication first. This authentication happens by using
+token. A token is generated as soon as a service account is created. This token is generated in the form another kube object
+called Secrets. Token is stored inside this secrets object. The secrets object is linked with serviceaccount object.
+
+Below are the list of kubectl commands to perform operations on serviceaccounts objects.
+
+```shell
+$kubectl create serviceaccount "service account name"
+
+$kubeectl get serviceaccount
+
+$kubectl describe serviceaccount "service account name"
+```
+
