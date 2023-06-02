@@ -347,3 +347,7 @@ $kubeectl get serviceaccount
 $kubectl describe serviceaccount "service account name"
 ```
 
+Note:
+
+: You cannot edit the service account name of an existing pod, however, you can edit the service account name of deployment
+since any change made to the deployment.yaml would perform rolling restarting of the pods.
