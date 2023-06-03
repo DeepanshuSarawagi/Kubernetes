@@ -387,3 +387,9 @@ can securely connect to a private registry for docker to pull images.
    ```
 2. Once the secret object is created, specify the imagePullSecrets property like this in the
    [pod.yaml](private-registry-pod.yaml).
+
+Note:
+
+: Useful kubectl command to view the docker registry secrets details in json format.
+```kubectl get secrets -o yaml -o jsonpath="{.items[*].data.\.dockerconfigjson}"```
+
