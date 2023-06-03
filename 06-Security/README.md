@@ -415,3 +415,75 @@ Following kubernetes networking solutions support networking policies:
 
 Following Kubernetes solution does not support networking policies:
 - Flannel
+
+Note:
+: Refer to below sample network policies which makes huge difference by simple AND or OR operation.
+
+
+```yaml
+# AND operation
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-policy
+spec:
+  podSelector:
+    matchLabels:
+      role: db
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            - matchLabels:
+                role: api-pod
+          namespaceSelector:   # Notice that there is no hyphen here. Which means, it is a AND combination. db pod will accept incoming
+            - matchLabels:     # incoming traffic from pod named api-pod and it should belong to namespace prod
+                name: prod
+      ports:
+        - protocol: TCP
+          port: 3306
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 192.168.5.10/32
+      ports:
+        - protocol: TCP
+          port: 80
+```
+
+```yaml
+# OR operation
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-policy
+spec:
+  podSelector:
+    matchLabels:
+      role: db
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            - matchLabels:
+                role: api-pod
+        - namespaceSelector:   # Notice that there is a hyphen here. Which means, it is a OR combination. db pod will accept incoming
+            - matchLabels:     # incoming traffic from pod named api-pod OR it should belong to namespace prod
+                name: prod
+      ports:
+        - protocol: TCP
+          port: 3306
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 192.168.5.10/32
+      ports:
+        - protocol: TCP
+          port: 80
+```
