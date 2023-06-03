@@ -367,3 +367,10 @@ In Kubernetes version 1.24, another change was made where creating service accou
 objects by default. To use a token for a SA, you need to explicitly run ```kubectl create token <serviceaccount name>```.
 
 If you still want to create a non-expiry token, here is the [secret.yaml](secret.yaml) specification.
+
+## 8. Image Security:
+
+It is important to safeguard the images we use to spinup a container. Default path for a docker container to pull the images
+we specify in yaml is docker.io/library/image-name. This URL is in the following format - registry/user-account/image-name
+
+Private registry should be used to safeguard the images.
