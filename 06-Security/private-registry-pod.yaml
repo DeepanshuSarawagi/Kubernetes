@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: private-registry-pod
+  labels:
+    app: private-registry-pod
+spec:
+  containers:
+    - name: private-registry-pod
+      image: docker.io/deepanshusarawagi/example-app
+      imagePullPolicy: Always
+  imagePullSecrets:
+    - name: regcred
+  restartPolicy: Always
+  

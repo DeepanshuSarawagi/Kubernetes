@@ -15,6 +15,7 @@
    1. [RBAC](#6a-rbac)
    2. [ClusterRoles and ClusterRoleBindings](#6b-clusterroles-and-clusterrolebindings)
 7. [Service Accounts](#7-service-accounts)
+8. [Image Security](#8-image-security)
 
 ## 1. Security primitives:
 
@@ -370,7 +371,19 @@ If you still want to create a non-expiry token, here is the [secret.yaml](secret
 
 ## 8. Image Security:
 
-It is important to safeguard the images we use to spinup a container. Default path for a docker container to pull the images
+It is important to safeguard the images we use to spin-up a container. Default path for a docker container to pull the images
 we specify in yaml is docker.io/library/image-name. This URL is in the following format - registry/user-account/image-name
 
-Private registry should be used to safeguard the images.
+Private registry should be used to protect the images. We can connect to private registry to pull images. Below is how you
+can securely connect to a private registry for docker to pull images. 
+
+1. Create a secret object of type docker-registry with required login details.
+   ```shell
+    $kubectl create secret docker-registry regcred \
+   --docker-server=private-registry.io \
+   --docker-username=registry-user \
+   --docker-password=registry-password \
+   --docker-email=registry-user@org.com
+   ```
+2. Once the secret object is created, specify the imagePullSecrets property like this in the
+   [pod.yaml](private-registry-pod.yaml).
