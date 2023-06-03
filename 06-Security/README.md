@@ -17,6 +17,7 @@
 7. [Service Accounts](#7-service-accounts)
 8. [Image Security](#8-image-security)
 9. [Security Context](#9-security-context)
+10. [Network Policy](#10-network-policy)
 
 ## 1. Security primitives:
 
@@ -398,3 +399,19 @@ Note:
 
 Security context in kubernetes allows you to run a pod or a container with different users/groups apart from root. It also
 allows you to add/remove linux_capabilities for a container. Refer to [pod-sec-ctxt.yaml](pod-sec-ctxt.yaml) for more details.
+
+## 10. Network Policy:
+
+A NetworkPolicy is another object in Kubernetes namespace which allows you to restrict Ingress traffic on pods. You define rules
+within network policies and attach it to pods. Here is a sample [network policy](network-policy.yaml) yaml file for reference
+which allows traffic on db pods accepting traffic from api-pods on port 3306.
+
+Following kubernetes networking solutions support networking policies:
+
+- Calico
+- Weave-net
+- Romana
+- Kube-Router
+
+Following Kubernetes solution does not support networking policies:
+- Flannel
