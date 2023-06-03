@@ -355,10 +355,15 @@ since any change made to the deployment.yaml would perform rolling restarting of
 This default token which is called as JWT (JSON Web Token) is not time bound or object bound. Which means it is valid for a
 lifetime. This case is observed in Kube versions < 1.22.
 
-From Kubernetes version 1.22 and above, the JWTs are generated using TokenRequestAPI and are
+In Kubernetes version 1.22 , the JWTs are generated using TokenRequestAPI and are
 
 - Time Bound
 - Audience Bound
 - Object Bound
 
 The JWT is then mount as projected volume in pods definition yaml file.
+
+In Kubernetes version 1.24, another change was made where creating service accounts no longer created tokens as secrets
+objects by default. To use a token for a SA, you need to explicitly run ```kubectl create token <serviceaccount name>```.
+
+If you still want to create a non-expiry token, here is the [secret.yaml](secret.yaml) specification.
