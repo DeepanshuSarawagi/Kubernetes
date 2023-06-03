@@ -16,5 +16,9 @@ spec:
         runAsGroup: 2000
         runAsUser: 1000
         allowPrivilegeEscalation: false
+        capabilities:
+          add:
+            - "NET_ADMIN"
+            - "SYS_TIME"
   restartPolicy: Always
   
