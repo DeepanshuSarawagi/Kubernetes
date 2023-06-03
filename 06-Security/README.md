@@ -351,3 +351,14 @@ Note:
 
 : You cannot edit the service account name of an existing pod, however, you can edit the service account name of deployment
 since any change made to the deployment.yaml would perform rolling restarting of the pods.
+
+This default token which is called as JWT (JSON Web Token) is not time bound or object bound. Which means it is valid for a
+lifetime. This case is observed in Kube versions < 1.22.
+
+From Kubernetes version 1.22 and above, the JWTs are generated using TokenRequestAPI and are
+
+- Time Bound
+- Audience Bound
+- Object Bound
+
+The JWT is then mount as projected volume in pods definition yaml file.
