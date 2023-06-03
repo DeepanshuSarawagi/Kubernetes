@@ -8,12 +8,25 @@ spec:
       role: db
   policyTypes:
   - Ingress
+  - Egress
   ingress:
     - from:
         - podSelector:
             - matchLabels:
                 role: api-pod
+          namespaceSelector:
+            - matchLabels:
+                name: prod
+        - ipBlock:
+            cidr: 196.168.5.10/32
       ports:
         - protocol: TCP
           port: 3306
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 192.168.5.10/32
+      ports:
+        - protocol: TCP
+          port: 80
                 
