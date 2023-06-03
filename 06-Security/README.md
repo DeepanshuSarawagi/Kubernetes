@@ -16,6 +16,7 @@
    2. [ClusterRoles and ClusterRoleBindings](#6b-clusterroles-and-clusterrolebindings)
 7. [Service Accounts](#7-service-accounts)
 8. [Image Security](#8-image-security)
+9. [Security Context](#9-security-context)
 
 ## 1. Security primitives:
 
@@ -393,3 +394,7 @@ Note:
 : Useful kubectl command to view the docker registry secrets details in json format.
 ```kubectl get secrets -o yaml -o jsonpath="{.items[*].data.\.dockerconfigjson}"```
 
+## 9. Security Context:
+
+Security context in kubernetes allows you to run a pod or a container with different users/groups apart from root. It also
+allows you to add/remove linux_capabilities for a container. Refer to [pod-sec-ctxt.yaml](pod-sec-ctxt.yaml) for more details.

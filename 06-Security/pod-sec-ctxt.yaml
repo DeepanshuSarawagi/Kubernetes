@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-sec-ctxt-example
+  labels:
+    app: pod-sec-ctxt-example
+spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 2000
+  containers:
+    - name: pod-sec-ctxt-example
+      image: nginx
+      imagePullPolicy: IfNotPresent
+      securityContext:
+        runAsGroup: 2000
+        runAsUser: 1000
+        allowPrivilegeEscalation: false
+  restartPolicy: Always
+  
