@@ -6,6 +6,8 @@
    1. [Docker's Layered Architecture](#1a-dockers-layered-architecture)
    2. [Persistent storage in Docker](#1b-persistent-storage-in-docker)
 2. [Volumes](#2-volumes)
+   1. [Persistent Volumes](#2a-persistent-volumes)
+   2. [Persistent Volume Claims](#2b-persistent-volume-claims)
 
 ## 1. Storage in Docker:
 
@@ -110,3 +112,6 @@ The pvc is bound to available PVs based on following options like
 - capacity requested
 - storage class
 - selectors
+
+Here is a sample [deployment definition](pvc-deployment.yaml) which shows how you can use persistent volumes and persistent
+volume claims in a deployment file.

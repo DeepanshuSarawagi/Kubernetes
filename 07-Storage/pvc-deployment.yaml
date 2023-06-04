@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-pvc-deployment
+  labels:
+    app: nginx-pvc-deployment
+    name: sample-pvc-deployment
+spec:
+  selector:
+    matchLabels:
+      name: sample-pvc
+  template:
+    metadata:
+      name: sample-pvc
+    spec:
+      containers:
+        - name: sample-pvc
+          image: nginx
+          volumeMounts:
+            - mountPath: "/var/www/html"
+              name: mypvcd
+      volumes:
+        - name: mypvcd
+          persistentVolumeClaim:
+            claimName: sample-persistent-volume-claim
+  replicas: 1
+  strategy:
+    type: RollingUpdate
