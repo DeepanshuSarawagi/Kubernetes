@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sample-persistent-volume
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 1Gi
+#  hostPath:
+#    path: /data
+  awsElasticBlockStore:    # It can either be a directory on host/node or an EBS volume like below
+    volumeID: <volumeID>
+    fsType: ext4
+  persistentVolumeReclaimPolicy: Retain

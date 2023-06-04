@@ -91,3 +91,22 @@ We created the [deployment](storage-volume-example.yaml) where it writes the ran
 process was completed, we could still see the number.out file available on /data directory. This was possible since we mounted
 the FS as volume on container. Refer to following ![snippet](img.png) which shows number.out file persisted despite deleting
 the pods.
+
+### 2a. Persistent Volumes:
+
+Creating volumes for each pod can become tedious and would be difficult to manage. Instead, we need a solution which can be
+centrally managed. PersistentVolumes in Kubernetes is a cluster-wide pool of storage volumes which can be used by users
+deploying applications on clusters. Users can now select storage from this pool using PersistentVolumeClaims.
+
+Here is a sample [Persistent Volume definition](pv-definition.yaml) and [Persistent Volume Claim](pvc-definition.yaml) for
+reference.
+
+### 2b. Persistent Volume Claims:
+
+PV and PVCs are two different objects in Kubernetes. Once the PVC is created, Kubernetes binds the pvc request with pv.
+The pvc is bound to available PVs based on following options like
+
+- accessModes
+- capacity requested
+- storage class
+- selectors
