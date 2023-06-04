@@ -67,4 +67,16 @@ Instead of mounting a volume, we can also mount a directory on the docker host t
 
 ```shell
 $docker run -v /data/mysql:/var/lib/mysql mysql
+
+# Updated verbose command
+
+$docker run --mount type=bind,source=/data/mysql,target=/var/lib/mysql msql
 ```
+
+**Docker uses storage drivers to enable layered architecture.** The common storage drivers are:
+- AUFS
+- ZFS
+- BTRFS
+- Device Mapper
+- Overlay
+- Overlay2
