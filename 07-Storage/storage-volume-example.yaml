@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storage-volume-example
+  labels:
+    app: storage-volume-example
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: storage-volume-example
+  template:
+    metadata:
+      name: storage-volume-example
+      labels:
+        app: storage-volume-example
+    spec:
+      volumes:
+        - name: data-volume
+          hostPath:
+            path: /data
+            type: Directory
+      containers:
+        - name: storage-volume-example
+          image: alpine
+          imagePullPolicy: IfNotPresent
+          command:
+            - "/bin/sh"
+            - "-c"
+          args:
+            - "shuf -i 0-100 -n 1 >> /opt/number.out;"
+          volumeMounts:
+            - mountPath: /opt
+              name: data-volume
+      restartPolicy: Always
+      
