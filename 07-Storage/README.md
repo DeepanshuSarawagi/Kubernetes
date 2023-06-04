@@ -4,7 +4,7 @@
 
 1. [Storage in Docker](#1-storage-in-docker)
    1. [Docker's Layered Architecture](#1a-dockers-layered-architecture)
-   2. 
+   2. [Persistent storage in Docker](#1b-persistent-storage-in-docker)
 
 ## 1. Storage in Docker:
 
@@ -48,3 +48,23 @@ is built using an image, all the metadata and data associated with containers is
 directory. This layered storage is READ-WRITABLE, hence, any changes made to the containers will be saved here. However,
 this storage layered is not persistent. Any content is stored until the container is alive.
 
+### 1b. Persistent storage in Docker:
+
+What if we want to make the data created by container, persistent? In this case, we can create a docker volume and then
+mount the volume inside the filesystem of container. This way any data written in the container will have a persistent storage
+in the form of volume created on docker host.
+
+```shell
+$docker create volume data_volume  # create the data_volume
+
+$docker run -v data_volume:/var/lib/mysql mysql  # mount this data_volume on /var/lib/mysql fs of container
+```
+
+Hence, even if the container is destroyed, data is still active. We are mounting a volume on container, this is called as
+**Volume mounting**.
+
+Instead of mounting a volume, we can also mount a directory on the docker host to the container. This is called as **Binding mount**.
+
+```shell
+$docker run -v /data/mysql:/var/lib/mysql mysql
+```
