@@ -135,7 +135,7 @@ We need to perform this step to create the network which will enable the communi
 - Edit the cidr range in custom-resources.yaml 
   - We need to specify the same cidr range as what we specified in the kubeadm command. I chose 10.244.0.0/16
   - Snippet from my file
-  ![calico custom resource yaml](https://github.com/DeepanshuSarawagi/Kubernetes/blob/main/Kubernetes-Cluster/img.png)
+  ![calico custom resource yaml](img.png)
 
 - $kubectl create -f custom-resources.yaml
 
