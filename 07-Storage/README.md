@@ -3,6 +3,8 @@
 ## Table of contents:
 
 1. [Storage in Docker](#1-storage-in-docker)
+   1. [Docker's Layered Architecture](#1a-dockers-layered-architecture)
+   2. 
 
 ## 1. Storage in Docker:
 
@@ -39,3 +41,10 @@ ENTRYPOINT FLASK_APP=/opt/source-code/app2.py flask run
 
 When we build this application, docker will not build first three layers since the first three layers are same between 
 Docker and Docker2, only source code is different. This way Docker builds images faster and efficiently saves space.
+
+When an image is built using docker, all the image related content is stored in the ```/var/lib/docker/image/overlay2```
+directory. This is a READ-ONLY layer. Meaning, once the image is built, no changes can be made to this layer. When a container
+is built using an image, all the metadata and data associated with containers is stored in ```/var/lib/docker/containers```
+directory. This layered storage is READ-WRITABLE, hence, any changes made to the containers will be saved here. However,
+this storage layered is not persistent. Any content is stored until the container is alive.
+
