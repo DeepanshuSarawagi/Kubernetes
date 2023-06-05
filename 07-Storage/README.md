@@ -8,6 +8,7 @@
 2. [Volumes](#2-volumes)
    1. [Persistent Volumes](#2a-persistent-volumes)
    2. [Persistent Volume Claims](#2b-persistent-volume-claims)
+3. [Storage Class](#3-storage-class)
 
 ## 1. Storage in Docker:
 
