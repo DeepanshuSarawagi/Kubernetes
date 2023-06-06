@@ -9,6 +9,8 @@
    1. [Persistent Volumes](#2a-persistent-volumes)
    2. [Persistent Volume Claims](#2b-persistent-volume-claims)
 3. [Storage Class](#3-storage-class)
+   1. [Static Provisioning](#3a-static-provisioning)
+   2. [Dynamic Provisioning](#3b-dynamic-provisioning)
 
 ## 1. Storage in Docker:
 
