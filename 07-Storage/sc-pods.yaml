@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sc-pods-example
+  labels:
+    app: sc-pods-example
+spec:
+  containers:
+    - name: sc-pods-example
+      image: nginx
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - mountPath: /var/log/nginx
+          name: aws-ebs-logs
+  volumes:
+    - name: aws-ebs-logs
+      persistentVolumeClaim:
+        claimName: aws-ebs-pvc
+  restartPolicy: Always

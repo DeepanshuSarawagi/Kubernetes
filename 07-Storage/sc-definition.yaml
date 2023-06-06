@@ -1,0 +1,12 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: aws-ebs-volume
+  labels:
+    name: aws-ebs-volume
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+  encrypted: "false"
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer

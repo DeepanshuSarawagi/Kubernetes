@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: aws-ebs-pvc
+  labels:
+    name: aws-ebs-pvc
+spec:
+  storageClassName: aws-ebs-volume
+#  selector:
+#    matchLabels:
+#      name: aws-ebs-volume
+  resources:
+    requests:
+      storage: 100Mi
+  accessModes:
+    - ReadWriteMany

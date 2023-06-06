@@ -116,3 +116,24 @@ The pvc is bound to available PVs based on following options like
 
 Here is a sample [deployment definition](pvc-deployment.yaml) which shows how you can use persistent volumes and persistent
 volume claims in a deployment file.
+
+## 3. Storage Class:
+
+### 3a. Static Provisioning:
+
+If we want to utilize gcp persistent disk or AWS EBS as volume in pods, then, we need to ensure that
+
+- Cloud storage is created manually.
+- A persistent volume utilizing the provisioned cloud storage should also be created manually.
+
+This method of provisioning volumes is called as **Static Provisioning.**
+
+### 3b. Dynamic Provisioning:
+
+To overcome above manual efforts for creating a volume is where Storage Classes comes-in.
+
+Using a storage class definition we can let Kubernetes provision a cloud storage. Kubernetes provisioner will be used to
+do so. There are several kubernetes provisioners available for different cloud options as listed in this 
+[document](https://kubernetes.io/docs/concepts/storage/storage-classes/#provisioner). 
+
+Use the relevant provisioner to have storage class provision a volume. And then use the storage class as PVC in the pods.
