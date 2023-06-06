@@ -139,3 +139,5 @@ do so. There are several kubernetes provisioners available for different cloud o
 [document](https://kubernetes.io/docs/concepts/storage/storage-classes/#provisioner). 
 
 Use the relevant provisioner to have storage class provision a volume. And then use the storage class as PVC in the pods.
+
+Refer to sample [Storage Class](sc-definition.yaml), [PVC](sc-pvc.yaml) and [Pod](sc-pods.yaml) in these hyperlinks.
