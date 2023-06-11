@@ -7,6 +7,7 @@
    2. [Router](#1b-router)
    3. [Gateway](#1c-gateway)
 2. [DNS](#2-dns)
+3. [Network Namespaces](#3-network-namespaces)
 
 
 ## 1. Networking Basics:
@@ -54,3 +55,7 @@ However, the above order of resolution can be changed by editing the entry in th
 Let's say if we don't have any host entry added in local hosts file or remote DNS, then we can have remote DNS server forward
 the name resolution to global **nameserver at address 8.8.8.8**. We just need to add this nameserver entry in ```/etc/resolv.conf```
 file of remote DNS server.
+
+## 3. Network Namespaces:
+
+Network Namespaces in Linux are used by containers like Docker to isolate networks.
