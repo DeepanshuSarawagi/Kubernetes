@@ -6,6 +6,7 @@
    1. [Switch](#1a-switch)
    2. [Router](#1b-router)
    3. [Gateway](#1c-gateway)
+2. [DNS](#2-dns)
 
 
 ## 1. Networking Basics:
@@ -43,4 +44,13 @@ below setting to true/1.
 
 We can perform name resolution by adding the hostname and IP address entry in the ```/etc/hosts``` file. This is a good
 solution for a small network. However, it becomes tedious to manage when the network grows. Hence, came the concept of DNS
-server. We can point our hosts to DNS server to perform any resolution or look up of hosts on other networks.
+server. We can point our hosts to DNS server to perform any resolution or look up of hosts on other networks. To point a
+host to remote DNS sevrer, we just need to add the host entry in ```/etc/resolv.conf``` file. However, remember that the
+```/etc/hosts``` file will always act as local DNS server. Name resolution will happen first here, if any host is not found,
+it would then forward to remote DNS server.
+
+However, the above order of resolution can be changed by editing the entry in the ```/etc/nsswitch.conf``` file.
+
+Let's say if we don't have any host entry added in local hosts file or remote DNS, then we can have remote DNS server forward
+the name resolution to global **nameserver at address 8.8.8.8**. We just need to add this nameserver entry in ```/etc/resolv.conf```
+file of remote DNS server.
