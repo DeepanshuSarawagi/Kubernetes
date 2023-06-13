@@ -46,7 +46,7 @@ below setting to true/1.
 We can perform name resolution by adding the hostname and IP address entry in the ```/etc/hosts``` file. This is a good
 solution for a small network. However, it becomes tedious to manage when the network grows. Hence, came the concept of DNS
 server. We can point our hosts to DNS server to perform any resolution or look up of hosts on other networks. To point a
-host to remote DNS sevrer, we just need to add the host entry in ```/etc/resolv.conf``` file. However, remember that the
+host to remote DNS server, we just need to add the host entry in ```/etc/resolv.conf``` file. However, remember that the
 ```/etc/hosts``` file will always act as local DNS server. Name resolution will happen first here, if any host is not found,
 it would then forward to remote DNS server.
 
@@ -58,4 +58,24 @@ file of remote DNS server.
 
 ## 3. Network Namespaces:
 
-Network Namespaces in Linux are used by containers like Docker to isolate networks.
+Network Namespaces in Linux are used by containers like Docker to isolate networks. When we create a network namespace, the 
+containers can only see the processes run by it in it's namespaces. Although, the underlying host can see all the processes
+irrespective of who creates it.
+
+Below commands should be run to create network namespace:
+
+```shell
+$ip netns add red
+$ip netns add blue
+
+# To list namespaces
+$ip netns
+
+# To list interfaces on the host
+$ip link
+
+# To list interfaces within the namespace
+$ip netns exec red ip link 
+
+
+```
