@@ -8,6 +8,7 @@
    3. [Gateway](#1c-gateway)
 2. [DNS](#2-dns)
 3. [Network Namespaces](#3-network-namespaces)
+4. [Networking in Docker](#4-networking-in-docker)
 
 
 ## 1. Networking Basics:
@@ -79,3 +80,23 @@ $ip netns exec red ip link
 
 
 ```
+
+## 4. Networking in Docker:
+
+When running a docker container with none network, it cannot communicate with both docker host or outside world.
+
+```shell
+$docker run nginx --network none
+```
+
+If we run a container with host network, docker containers will share the network with hosts. Let's say if a container runs
+on port 80, then no other container or process can use the same port.
+
+```shell
+$docker run nginx --network host
+```
+
+The third networking option is bridge. An internal private network which the docker hosts and containers attach to.
+Whenever a container is created, docker creates a network namespace for it and then attaches it to the bridge. To connect
+the network namespace within container and the bridge network, docker creates two virtual network interfaces. It attaches
+those interfaces, one end to the container and other end to the bridge network.
