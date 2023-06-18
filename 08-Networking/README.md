@@ -125,3 +125,11 @@ Note:
 
 : Docker does not support CNI. It supports its own Container Network Model. However, Kubernetes takes care of assigning
 IP address to docker containers.
+
+```shell
+# Useful network commands to inspect ports and process listening on them
+
+$netstat -nplt | grep 3574 # To find port for this pid
+$netstat -anp | grep etcd  # To find active listen connections for this process
+$ip address show type bridge
+```
