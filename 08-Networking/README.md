@@ -9,6 +9,7 @@
 2. [DNS](#2-dns)
 3. [Network Namespaces](#3-network-namespaces)
 4. [Networking in Docker](#4-networking-in-docker)
+5. [Container Network Interface](#5-container-network-interface)
 
 
 ## 1. Networking Basics:
@@ -100,3 +101,27 @@ The third networking option is bridge. An internal private network which the doc
 Whenever a container is created, docker creates a network namespace for it and then attaches it to the bridge. To connect
 the network namespace within container and the bridge network, docker creates two virtual network interfaces. It attaches
 those interfaces, one end to the container and other end to the bridge network.
+
+## 5. Container Network Interface:
+
+CNI defines how a network plug-in should be developed and how container runtime should invoke it. 
+
+For Container Runtimes CNI specifies that:
+
+- It must create network namespace.
+- Identify network the container should attach to.
+- Container Runtime to invoke network plug-in when container is added.
+- Container Runtime to invoke network plug-in when container is deleted.
+- JSON format of the network configuration.
+
+For Plugins CNI specifies that:
+
+- It must support command line arguments ADD/CHECK/DEL.
+- It must support parameters container id, network ns etc.
+- It must manage IP address assignment to PODs.
+- It must return results in specific format.
+
+Note:
+
+: Docker does not support CNI. It supports its own Container Network Model. However, Kubernetes takes care of assigning
+IP address to docker containers.
