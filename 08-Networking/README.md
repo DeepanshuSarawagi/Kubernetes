@@ -10,6 +10,7 @@
 3. [Network Namespaces](#3-network-namespaces)
 4. [Networking in Docker](#4-networking-in-docker)
 5. [Container Network Interface](#5-container-network-interface)
+6. [POD Networking](#6-pod-networking)
 
 
 ## 1. Networking Basics:
