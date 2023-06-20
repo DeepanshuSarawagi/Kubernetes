@@ -133,3 +133,11 @@ $netstat -nplt | grep 3574 # To find port for this pid
 $netstat -anp | grep etcd  # To find active listen connections for this process
 $ip address show type bridge
 ```
+
+## 6. Pod Networking:
+
+Below is the networking model for PODs.
+
+- Every POD should have an IP address assigned.
+- Every POD should be able to communicate with every other POD in the same node.
+- Every POD should be able to communicate with every other POD on the other nodes without NAT.
