@@ -133,6 +133,9 @@ $ip -n blue addr add 192.168.15.2 dev veth-blue
 # Bring up the interfaces
 $ip -n red link set veth-red up
 $ip -n blue link set veth-blue up
+
+# Finally assign the IP address to the bridge interface
+$ip addr add 192.168.15.5/24 dev v-net-0   # Now the Linux host can reach the network in namespace red or blue via this bridge
 ```
 
 ## 4. Networking in Docker:
