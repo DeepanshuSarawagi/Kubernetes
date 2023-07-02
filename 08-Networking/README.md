@@ -90,6 +90,32 @@ $ip link
 $ip netns exec red ip link 
 
 
+# To connect two network namespaces using virtual cable
+$ip link add veth-red type veth peer name veth-blue
+
+# To attach network interface to appropriate namespace
+$ip link set veth-red netns red
+$ip link set veth-blue netns blue
+
+# To assign IP addresses to these network interfaces in namespaces
+$ip -n red addr add 192.168.15.1 dev veth-red
+$ip -b blue addr add 192.168.15.2 dev veth-blue
+
+# To bring up the interface in respective namespace
+$ip -n red link set veth-red up
+$ip -n blue link set veth-blue up
+```
+
+To create multiple interfaces in multiple namespaces within a host, we would need a virtual network/switch. Refer below
+to create a virtual switch.
+
+```shell
+$ip link add v-net-0 type bridge
+
+# Bring up the above virtual network
+$ip link set dev v-net-0 up
+
+
 ```
 
 ## 4. Networking in Docker:
