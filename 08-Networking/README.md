@@ -113,9 +113,26 @@ to create a virtual switch.
 $ip link add v-net-0 type bridge
 
 # Bring up the above virtual network
-$ip link set dev v-net-0 up
+$ip link set dev v-net-0 up  # Think of it as interface for host and switch for namespaces
+
+# To create a network interface in namespace
+$ip link add veth-red type veth peer name veth-red-br
+$ip link add veth-blue type veth peer name veth-blue-br
+
+# Attach the interface to namespaces
+$ip link set veth-red netns red            # To attach one end of interface with ns
+$ip link set veth-red-br master v-net-0    # To attach other end of interface with virtual network
+$ip link set veth-blue netns blue          # To attach one end of interface with ns
+$ip link set veth-blue-br master v-net-0   # To attach other end of interface with virtual network
 
 
+# Assign IP addresses to the interfaces in namespaces
+$ip -n red addr add 192.168.15.1 dev veth-red 
+$ip -n blue addr add 192.168.15.2 dev veth-blue
+
+# Bring up the interfaces
+$ip -n red link set veth-red up
+$ip -n blue link set veth-blue up
 ```
 
 ## 4. Networking in Docker:
