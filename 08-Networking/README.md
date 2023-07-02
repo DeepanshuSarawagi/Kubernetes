@@ -25,7 +25,7 @@ systems in the same network.
 
 ### 1b. Router:
 
-A Router helps two networks connect together. A router has many switches and has multiple IPs assigned to enable communication
+A Router helps two networks _connect_ together. A router has many switches and has multiple IPs assigned to enable communication
 between multiple networks. A router is just any other device on the network.
 
 ### 1c. Gateway:
@@ -44,6 +44,15 @@ below setting to true/1.
 [deepanshusarawagi@deepanshu ~]$ sudo cat /proc/sys/net/ipv4/ip_forward
 1
 ```
+
+To make the above changes permanent, we need to make changes in the ```/etc/sysctl.conf``` file.
+
+```shell
+cat /etc/sysctl.conf
+net.ipv4.ip_forward = 1
+```
+
+
 ## 2. DNS:
 
 We can perform name resolution by adding the hostname and IP address entry in the ```/etc/hosts``` file. This is a good
@@ -62,7 +71,7 @@ file of remote DNS server.
 ## 3. Network Namespaces:
 
 Network Namespaces in Linux are used by containers like Docker to isolate networks. When we create a network namespace, the 
-containers can only see the processes run by it in it's namespaces. Although, the underlying host can see all the processes
+containers can only see the processes run by it in its namespaces. Although, the underlying host can see all the processes
 irrespective of who creates it.
 
 Below commands should be run to create network namespace:
