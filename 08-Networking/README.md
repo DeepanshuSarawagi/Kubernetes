@@ -11,6 +11,8 @@
 4. [Networking in Docker](#4-networking-in-docker)
 5. [Container Network Interface](#5-container-network-interface)
 6. [POD Networking](#6-pod-networking)
+7. [IPAM](#7-ip-address-management)
+8. [Service Networking](#8-service-networking)
 
 
 ## 1. Networking Basics:
@@ -202,3 +204,17 @@ Below is the networking model for PODs.
 
 IPAM or Ip Address Management in Kubernetes is about how an IP address assigned to a network and to a Pod. CNI owns IPAM
 solution in the Kubernetes.
+
+## 8. Service Networking:
+
+A kubernetes service when created is accessible from all pods across all the cluster nodes. A service is hosted across the
+cluster.
+
+### How are the Kube services get the IP address?
+
+Every time a new service is created on the cluster, kube-proxy gets into action. A Kubernetes service gets IP address 
+assigned from a pre-defined range by kube-proxy. We can inspect this IP address range in the kube-apiserver yaml definition.
+
+Note:
+: This IP address CIDR range for service defined in the kube-apiserver definition should not overlap with CIDR range defined
+in CNI for PODs.
