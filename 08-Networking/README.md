@@ -197,3 +197,8 @@ Below is the networking model for PODs.
 - Every POD should have an IP address assigned.
 - Every POD should be able to communicate with every other POD in the same node.
 - Every POD should be able to communicate with every other POD on the other nodes without NAT.
+
+## 7. IP address management:
+
+IPAM or Ip Address Management in Kubernetes is about how an IP address assigned to a network and to a Pod. CNI owns IPAM
+solution in the Kubernetes.
