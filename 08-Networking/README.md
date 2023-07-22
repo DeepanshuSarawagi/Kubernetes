@@ -13,6 +13,7 @@
 6. [POD Networking](#6-pod-networking)
 7. [IPAM](#7-ip-address-management)
 8. [Service Networking](#8-service-networking)
+9. [DNS in Kubernetes](#9-dns-in-kubernetes)
 
 
 ## 1. Networking Basics:
@@ -243,3 +244,13 @@ We can see the rules created by kube-proxy using iptables nat table output.
 iptables -L -t nat | grep <kube service name>
 ```
 We can see the logs of these rules created by kube-proxy at ```/var/log/kube-proxy.log```
+
+## 9. DNS in Kubernetes:
+
+For any service created within the namespace, this is the DNS format.
+
+```http://<name-of-the-service>.<namespace-name>.<svc>```
+
+All the services and PODs are grouped together in the root domain called as cluster.local.
+
+```http://<name-of-the-service>.<namespace-name>.<svc>.cluster.local```
