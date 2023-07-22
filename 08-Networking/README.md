@@ -269,4 +269,29 @@ Within this file, there are a number of plug-ins configured to handle errors.
 
 Any POD which is not able to resolve the name such as www.google.com is forwarded to the nameserver configured in the CoreDNS
 pod. When a CoreDNS component is deployed, a service is also created to make it available for other components in the kube
-cluster. This service is known as ```kube-dns```
+cluster. This service is known as ```kube-dns```.
+
+Here is the sample Corefile.
+
+```textmate
+.:53 {
+    errors
+    health {
+       lameduck 5s
+    }
+    ready
+    kubernetes cluster.local in-addr.arpa ip6.arpa {
+       pods insecure
+       fallthrough in-addr.arpa ip6.arpa
+       ttl 30
+    }
+    prometheus :9153
+    forward . /etc/resolv.conf {
+       max_concurrent 1000
+    }
+    cache 30
+    loop
+    reload
+    loadbalance
+}
+```
