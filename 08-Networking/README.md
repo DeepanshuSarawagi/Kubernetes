@@ -263,3 +263,10 @@ http://10-244-2-5.apps.pod.cluster.local/
 
 # Wherein, "apps" is the namespace, "pod" subdomain is for grouping all PODs together and cluster.local is the root domain.
 ```
+Kubernetes has its own DNS server as POD in kube-system namespace. It is called as ```CoreDNS```. Prior to kube version 1.12, this
+was referred to as ```kube-dns```. ```CoreDNS``` uses a file to maintain all the records at ```/etc/coredns/Corefile```.
+Within this file, there are a number of plug-ins configured to handle errors. 
+
+Any POD which is not able to resolve the name such as www.google.com is forwarded to the nameserver configured in the CoreDNS
+pod. When a CoreDNS component is deployed, a service is also created to make it available for other components in the kube
+cluster. This service is known as ```kube-dns```
