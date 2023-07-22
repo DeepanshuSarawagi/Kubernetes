@@ -218,6 +218,21 @@ assigned from a pre-defined range by kube-proxy. The kube-proxy gets that IP add
 each node saying any traffic coming on the IP of this service should go to the IP of the POD. We can inspect this IP 
 address range in the kube-apiserver yaml definition.
 
+Kube proxy uses different ways of creating these forwarding rules for every service.
+
+- userspace
+- ipvs
+- iptables (default)
+
+The proxy mode option can be set while configuring the kube-proxy service.
+
+```shell
+kube-proxy --proxy-mode [userspace | ipvs | iptables]
+
+```
+
+If no mode is selected, then iptables proxy mode is selected by default.
+
 Note:
 : This IP address CIDR range for service defined in the kube-apiserver definition should not overlap with CIDR range defined
-in CNI for PODs.
+in CNI for PODs. Look for IP address range in the following property ```--service-cluster-ip-range```.
