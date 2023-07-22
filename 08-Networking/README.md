@@ -236,3 +236,10 @@ If no mode is selected, then iptables proxy mode is selected by default.
 Note:
 : This IP address CIDR range for service defined in the kube-apiserver definition should not overlap with CIDR range defined
 in CNI for PODs. Look for IP address range in the following property ```--service-cluster-ip-range```.
+
+We can see the rules created by kube-proxy using iptables nat table output.
+
+```shell
+iptables -L -t nat | grep <kube service name>
+```
+We can see the logs of these rules created by kube-proxy at ```/var/log/kube-proxy.log```
