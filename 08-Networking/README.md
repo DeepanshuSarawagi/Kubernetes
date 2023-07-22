@@ -214,7 +214,9 @@ For a brief recap on different kinds of Kubernetes service, refer this [document
 ### How are the Kube services get the IP address?
 
 Every time a new service is created on the cluster, kube-proxy gets into action. A Kubernetes service gets IP address 
-assigned from a pre-defined range by kube-proxy. We can inspect this IP address range in the kube-apiserver yaml definition.
+assigned from a pre-defined range by kube-proxy. The kube-proxy gets that IP address and creates a forwarding rule on 
+each node saying any traffic coming on the IP of this service should go to the IP of the POD. We can inspect this IP 
+address range in the kube-apiserver yaml definition.
 
 Note:
 : This IP address CIDR range for service defined in the kube-apiserver definition should not overlap with CIDR range defined
