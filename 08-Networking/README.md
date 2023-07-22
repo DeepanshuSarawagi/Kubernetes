@@ -254,3 +254,12 @@ For any service created within the namespace, this is the DNS format.
 All the services and PODs are grouped together in the root domain called as cluster.local.
 
 ```http://<name-of-the-service>.<namespace-name>.<svc>.cluster.local```
+
+Record for PODs are not created by default. However, once enabled, PODs get the following name format within the cluster.
+It is a combination of IP of PODs separated by dash. For example.,
+
+```shell
+http://10-244-2-5.apps.pod.cluster.local/
+
+# Wherein, "apps" is the namespace, "pod" subdomain is for grouping all PODs together and cluster.local is the root domain.
+```
