@@ -320,6 +320,8 @@ works in combination of IngressController solution with Ingress resource. Typica
 Ingress object. Ingress Controller have additional intelligence built into them to monitor Kubernetes cluster for any
 additional Kubernetes Ingress resources and configure the IngressController accordingly.
 
+Refer example [Nginx Ingress definition](IngressController.yaml) here.
+
 ### 10b. Ingress Resources:
 
 Ingress Resources are created using definition file just PODs, Deployments, Replica sets.
