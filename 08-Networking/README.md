@@ -14,6 +14,7 @@
 7. [IPAM](#7-ip-address-management)
 8. [Service Networking](#8-service-networking)
 9. [DNS in Kubernetes](#9-dns-in-kubernetes)
+10. [Ingress](#10-ingress)
 
 
 ## 1. Networking Basics:
@@ -295,3 +296,11 @@ Here is the sample Corefile.
     loadbalance
 }
 ```
+
+## 10. Ingress:
+
+Ingress resource helps you manage routing configuration, making all the application services accessible using a single externally 
+accessible URL. Ingress is a _**layer 7 application lb**_ built within Kubernetes cluster that can be configured using native kubernetes
+primitives just like any other Kube object. However, creating a Kube Ingress object alone isn't enough. We need to have a relevant IngressController
+as well.
+
