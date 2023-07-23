@@ -15,6 +15,7 @@
 8. [Service Networking](#8-service-networking)
 9. [DNS in Kubernetes](#9-dns-in-kubernetes)
 10. [Ingress](#10-ingress)
+    1. [IngressController](#10a-ingress-controller)
 
 
 ## 1. Networking Basics:
@@ -302,5 +303,23 @@ Here is the sample Corefile.
 Ingress resource helps you manage routing configuration, making all the application services accessible using a single externally 
 accessible URL. Ingress is a _**layer 7 application lb**_ built within Kubernetes cluster that can be configured using native kubernetes
 primitives just like any other Kube object. However, creating a Kube Ingress object alone isn't enough. We need to have a relevant IngressController
-as well.
+as well since Kubernetes Ingress object alone cannot handle SSL termination, load balancing requests et cetera. Here is 
+where IngressController comes into the picture.
 
+### 10a. Ingress Controller:
+
+There are several solutions available which is supported by Kubernetes such as 
+
+- Nginx (Supported by Kubernetes Project)
+- HaProxy
+- AWS LB controller
+- Istio
+
+We then configure set of routing rules which is the actual Ingress resource. Hence, URL routing and load balancing in Kubernetes
+works in combination of IngressController solution with Ingress resource. Typically, Nginx IngressController with Kubernetes
+Ingress object. Ingress Controller have additional intelligence built into them to monitor Kubernetes cluster for any
+additional Kubernetes Ingress resources and configure the IngressController accordingly.
+
+### 10b. Ingress Resources:
+
+Ingress Resources are created using definition file just PODs, Deployments, Replica sets.
