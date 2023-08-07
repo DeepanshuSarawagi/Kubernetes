@@ -324,4 +324,5 @@ Refer example [Nginx Ingress definition](IngressController.yaml) here.
 
 ### 10b. Ingress Resources:
 
-Ingress Resources are created using definition file just like PODs, Deployments, Replica sets.
+An Ingress Resource is set of rules and configurations applied on IngressController. Ingress Resources are created using 
+definition file just like PODs, Deployments, Replica sets. Refer to the following [ingress.yaml](ingress.yaml)
