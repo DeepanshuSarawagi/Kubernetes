@@ -16,6 +16,7 @@
 9. [DNS in Kubernetes](#9-dns-in-kubernetes)
 10. [Ingress](#10-ingress)
     1. [IngressController](#10a-ingress-controller)
+    2. [Ingress Resources](#10b-ingress-resources)
 
 
 ## 1. Networking Basics:
