@@ -16,3 +16,13 @@ spec:
                 name: nginx-ingress-service
                 port:
                   number: 80
+    - host: "*.mycompany.com"
+      http:
+        paths:
+          - path: /wear
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-ingress-service
+                port:
+                  number: 443
