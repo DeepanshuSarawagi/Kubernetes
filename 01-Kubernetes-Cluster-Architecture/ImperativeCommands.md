@@ -76,3 +76,6 @@ $kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run=c
 ### To set service-account for a deployment:
 
 ```kubectl set serviceaccount deploy/<deployment name> <service account name>```
+
+### Create ingress resource
+```kubectl create ingress catch-all --class=otheringress --rule="/path=svc:port"```
