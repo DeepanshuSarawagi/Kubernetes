@@ -17,5 +17,5 @@ This repository is created to learn Kubernetes and prepare for CKA.
 # Learn about Deployments
 [Deployment and Rollout strategies](01-Kubernetes-Cluster-Architecture/deployments.md)
 
-# Learn about ReplicaSets
-[Replica Sets basics](ReplicaSets/rc-definition.yaml)
+# Learn about Resource Quota
+[Resource Quota](ResourceQuota/resource-quota.yaml)
