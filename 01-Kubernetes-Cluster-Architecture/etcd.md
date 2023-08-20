@@ -24,3 +24,22 @@
 
 - Whenever we run kubectl get command, the information we get is from etcd server.
 - advertise client url is the address etcd service listens on.
+
+## Topology:
+
+### Stacked Topology:
+
+Etcd runs on Kube master nodes where other core components run.
+
+- Easier to setup
+- Easier to manage
+- Fewer servers
+- Risk during failures
+
+### External ETCD Topology:
+
+ETCD runs on a dedicated servers separated from kube master nodes.
+
+- High availability
+- More servers
+- Harder to setup
