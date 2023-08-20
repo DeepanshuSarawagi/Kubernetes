@@ -65,3 +65,20 @@ the leader role.
 Now, the newly elected leader sends notification to other master nodes at regular intervals that it is continuing to assume
 the role of leader. In case, if other nodes do not receive the notification due to it leader node being down, the other master
 nodes initiate the leader re-election process and a new leader is elected.
+
+### Quorum:
+
+Quorum is the minimum number of nodes that must be available. In a cluster network of three nodes, the quorum value is N/2 + 1.
+
+| Instances | Quorum  |
+|:----------|:--------|
+| 1         | 1       |
+| 2         | 2       |
+| 3         | 2       |
+| 4         | 3       |
+| 5         | 3       |
+| 6         | 4       |
+| 7         | 4       |
+
+
+
