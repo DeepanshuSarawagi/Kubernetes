@@ -43,3 +43,14 @@ ETCD runs on a dedicated servers separated from kube master nodes.
 - High availability
 - More servers
 - Harder to setup
+
+## ETCD in HA:
+
+How does ETCD ensure data on all the nodes are consistent? We can write to any instance and read the data from any instance.
+
+ETCD follows the leader/followers strategy. Out of all the nodes, one node will be elected as leader and rest will be followers.
+READ operation can be done from any of the nodes, however, WRITE operation happens only on leader node. Leader node ensures
+to process the WRITE operation and updates other nodes with the copy of the data.
+
+If the WRITES come through any of the follower nodes, it forwards the operation to leader node internally. A WRITE can be
+considered complete only when it receives consent from the other nodes in the cluster.
