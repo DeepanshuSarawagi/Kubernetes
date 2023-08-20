@@ -54,3 +54,10 @@ to process the WRITE operation and updates other nodes with the copy of the data
 
 If the WRITES come through any of the follower nodes, it forwards the operation to leader node internally. A WRITE can be
 considered complete only when it receives consent from the other nodes in the cluster.
+
+### Leader election process:
+
+ETCD implements distributed consensus using RAFT protocol. RAFT algorithm uses random timers for initiating requests. For
+example, a random timer is kicked off on all the nodes. The first one to finish the timer sends out a request to the other
+nodes requesting permission to be the leader. The other nodes respond the request with a vote and the requesting node assumes
+the leader role.
