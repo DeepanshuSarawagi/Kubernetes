@@ -61,3 +61,7 @@ ETCD implements distributed consensus using RAFT protocol. RAFT algorithm uses r
 example, a random timer is kicked off on all the nodes. The first one to finish the timer sends out a request to the other
 nodes requesting permission to be the leader. The other nodes respond the request with a vote and the requesting node assumes
 the leader role.
+
+Now, the newly elected leader sends notification to other master nodes at regular intervals that it is continuing to assume
+the role of leader. In case, if other nodes do not receive the notification due to it leader node being down, the other master
+nodes initiate the leader re-election process and a new leader is elected.
