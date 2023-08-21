@@ -70,15 +70,15 @@ nodes initiate the leader re-election process and a new leader is elected.
 
 Quorum is the minimum number of nodes that must be available. In a cluster network of three nodes, the quorum value is N/2 + 1.
 
-| Instances | Quorum  |
-|:----------|:--------|
-| 1         | 1       |
-| 2         | 2       |
-| 3         | 2       |
-| 4         | 3       |
-| 5         | 3       |
-| 6         | 4       |
-| 7         | 4       |
+| Instances | Quorum | Fault Tolerance |
+|:----------|:-------|:----------------|
+| 1         | 1      | 0               |
+| 2         | 2      | 0               |
+| 3         | 2      | 1               |
+| 4         | 3      | 1               |
+| 5         | 3      | 2               |
+| 6         | 4      | 2               |
+| 7         | 4      | 3               |
 
-
-
+It is always recommended to consider odd number of clusters since fault tolerance is high when compared to even number of
+nodes.
