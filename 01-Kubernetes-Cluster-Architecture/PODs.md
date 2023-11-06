@@ -27,3 +27,15 @@ Imperative command to create pods with labels
 
 Imperative command to create a pod and expose it as a clusterIp service
 .\kubectl run nginx --image=nginx:alpine --port=80 --labels="tier=frontend" --expose=true
+
+Note:
+
+: Remember, you CANNOT edit specifications of an existing POD other than the below.
+
+    spec.containers[*].image
+
+    spec.initContainers[*].image
+
+    spec.activeDeadlineSeconds
+
+    spec.tolerations 
