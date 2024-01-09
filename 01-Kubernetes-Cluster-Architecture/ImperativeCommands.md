@@ -80,7 +80,10 @@ $kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run=c
 ### Create ingress resource
 ```kubectl create ingress catch-all --class=otheringress --rule="/path=svc:port"```
 
-### To remove tainsts from nodes
+### To add taint for nodes
+```kubectl taint node node01 key=value:NoSchedule```
+
+### To remove taints from nodes
 ```kubectl taint node node01 key=value:NoSchedule-```
 
 Note:
