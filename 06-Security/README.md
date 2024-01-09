@@ -178,7 +178,7 @@ kubectl certificate approve <csr name>
 ```
 
 Few things to note: 
-: kube controller-manager has builtin certificate signer. In-order for us to use the kubectl to approve and sign the request,
+: Kube controller-manager has builtin certificate signer. In-order for us to use the kubectl to approve and sign the request,
 we must ensure to pass on the following commands args to kube-apiserver configuration file.
 cluster-signing-cert-file: /etc/kubernetes/pki/ca.crt
 cluster-signing-key-file: /etc/kubernetes/pki/ca.key
