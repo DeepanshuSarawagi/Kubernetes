@@ -84,4 +84,5 @@ $kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run=c
 ```kubectl taint node node01 key=value:NoSchedule-```
 
 Note:
+
 : Notice the ```-``` at the end of the command which removes the matching taints from the nodes.
