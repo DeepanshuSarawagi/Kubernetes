@@ -89,3 +89,7 @@ $kubectl create service nodeport nginx --tcp=80:80 --node-port=30080 --dry-run=c
 Note:
 
 : Notice the ```-``` at the end of the command which removes the matching taints from the nodes.
+
+### How to get json paths of Kube objects
+
+```kubectl get pods -o json | jq -c "paths"```
