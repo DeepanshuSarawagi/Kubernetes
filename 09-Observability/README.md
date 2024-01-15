@@ -22,7 +22,7 @@ the application is not up would lead to poor customer experience.
 
 To overcome above issue, comes the concept of Readiness Probe.
 
-## 1. Readiness Probe
+## 1. Readiness Probe:
 
 We can configure Readiness probes to ensure application inside a container is actually Ready to serve traffic.
 
@@ -106,4 +106,36 @@ spec:
           command:
             - cat
             - /api/is_ready.txt
+```
+
+## 2. Liveness Probe:
+
+A Liveness probe can be configured within a container to periodically check whether the application is Live and healthy.
+This is required for container to serve customer traffic if and only if application is healthy. This address the scenario
+of container in READY state/condition even though the application is in hung state.
+
+If the Liveness probe fails, the container is destroyed by Kubernetes and a new one is created.
+
+The liveness probe configuration is exactly same as readinessProbe. Only change is the field name. Refer to below example.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: readinesspod
+  namespace: default
+spec:
+  containers:
+    - name: readinesspod
+      image: nginx
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          port: 8080
+          path: /api/isready
+        initialDelaySeconds: 3
+        periodSeconds: 5
+        failureThreshold: 5
 ```
