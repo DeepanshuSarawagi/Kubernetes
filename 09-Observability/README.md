@@ -139,3 +139,28 @@ spec:
         periodSeconds: 5
         failureThreshold: 5
 ```
+
+## 2.Monitoring:
+
+There are several solutions available to monitor applications/infra of Kubernetes.
+
+- Metrics server
+- Prometheus
+- Datadog
+- Elastic Stack
+- Dynatrace
+
+### 2a. Metric Server:
+
+Metrics server is an in-memory monitoring solution. Hence, we cannot see historical data.
+
+Kubelet has a subcomponent known as cAdvisor. The cAdvisor collects the performance metrics from pods/nodes and exposes
+them to kubelet API to make it available to the Metrics Server. 
+
+Metrics server on Kubernetes can be installed following instructions in this [link](https://github.com/kubernetes-sigs/metrics-server).
+
+### 2b. Handy commands
+
+```kubectl top pods --sort-by=cpu```
+
+```kubectl top nodes```
