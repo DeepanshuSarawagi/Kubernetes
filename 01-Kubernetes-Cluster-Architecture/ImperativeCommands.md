@@ -97,3 +97,7 @@ Note:
 ### Command to record a rollout of Deployment
 
 ```kubectl set image deployment nginx nginx=nginx:1.17 --record```
+
+### How to undo a deployment to a specific rollout version
+
+```kubectl rollout undo deployment nginx --to-revision=1```
