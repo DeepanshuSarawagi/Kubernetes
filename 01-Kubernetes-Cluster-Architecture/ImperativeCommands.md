@@ -93,3 +93,7 @@ Note:
 ### How to get json paths of Kube objects
 
 ```kubectl get pods -o json | jq -c "paths"```
+
+### Command to record a rollout of Deployment
+
+```kubectl set image deployment nginx nginx=nginx:1.17 --record```
