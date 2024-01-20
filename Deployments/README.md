@@ -31,3 +31,20 @@ the service to route traffic to Green Deployment.
 Refer to the [blue-deployment.yaml](blue-deployment.yaml) and [green-deployment.yaml](green-deployment.yaml) for 
 examples. If you notice in the [green-deployment.yaml](green-deployment.yaml), the same service forwards the traffic to v2
 deployment.
+
+## 3. Canary Deployments:
+
+In Canary deployments, we can restrict very minimal traffic to version 2 of deployment, aka Canary Deployment. Once the tests are validated, we
+can then delete the canary deployment and rollout the changes to existing PODs. We can achieve this by following kubernetes
+primitives as below.
+
+- Create a version1 of Deployment with 5 replicas.
+- Create a service to route traffic to version1 deployment.
+- Create a new canary deployment with updates and just 1 replica.
+  - Ensure that the label of deployment is same as version1 deployment.
+- Update the service's selector field to the common label between version1 and canary deployment.
+  - This way traffic routes to both version1 and canary version of deployment.
+  - 83% traffic would go to version1 and 17% traffic to canary.
+- Once testing is complete, delete the canary deployment and rollout the changes to existing version1 deployment.
+
+Refer to the following [canary-deployment.yaml](canary-deployment.yaml) file for example.
