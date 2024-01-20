@@ -71,4 +71,18 @@ $kubectl create -f nginx-deployment.yaml
 
 $kubectl create deployment --image=nginx nginx --replicas=4 --dry-run=client -o yaml > nginx-deployment.yaml
 
+# To check the status of Deployment, run the following command
+
+$kubectl rollout status deployment/myapp-deployment
+
+# To check the history of deployments
+
+$kubectl rollout history deployment/myapp-deployment
+
+# To record a deployment
+
+$kubectl create deployment -f deployment.app --record
+
+
 ```
+
