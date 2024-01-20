@@ -4,6 +4,7 @@
 
 1. [Introduction](#1-introduction)
 2. [Blue/Green deployments](#2-bluegreen-deployment)
+3. [Canary deployments](#3-canary-deployments)
 
 ## 1. Introduction:
 In this chapter, we are going to talk about the different deployment strategies. There are several deployment strategies
