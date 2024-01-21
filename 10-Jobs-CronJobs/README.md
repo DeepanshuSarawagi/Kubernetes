@@ -4,6 +4,7 @@
 ## Table of contents:
 
 1. [Introduction](#1-introduction)
+2. [Jobs](#2-jobs)
 
 
 ## 1. Introduction:
@@ -52,3 +53,10 @@ us, then we can set the ```completion``` field under spec. By default, the pods 
 
 Instead of getting the jobs completed sequentially, we can get the job completed parallel using the property called ```parallelism```
 which will create the specified number of pods to complete the task.
+
+## 3. CronJobs:
+
+A CronJon in Kubernetes is like Crontab in Unix where you can schedule job to perform tasks. It accepts a Unix like string
+to schedule jobs. More details about unix scheduling can be found in this [wiki](https://en.wikipedia.org/wiki/Cron) link.
+
+refer to [cronjobs.yaml](cronjobs.yaml) for Kubernetes definition example.

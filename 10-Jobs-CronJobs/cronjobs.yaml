@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: reporting-job
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      completions: 3
+      parallelism: 3
+      template:
+        spec:
+          containers:
+            - name: reporting-job
+              image: busybox:latest
+              imagePullPolicy: IfNotPresent
+              command:
+                - /bin/sh
+                - -c
+                - date; echo Hello!
+          restartPolicy: OnFailure
