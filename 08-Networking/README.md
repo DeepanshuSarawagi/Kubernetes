@@ -213,7 +213,7 @@ solution in the Kubernetes.
 
 A kubernetes service when created is accessible from all pods across all the cluster nodes. A service is hosted across the
 cluster.
-For a brief recap on different kinds of Kubernetes service, refer this [document](../Services).
+For a brief recap on different kinds of Kubernetes service, refer this [document](../11-Services).
 
 ### How are the Kube services get the IP address?
 
