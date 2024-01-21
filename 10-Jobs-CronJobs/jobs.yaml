@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: math-job
+spec:
+  completions: 3
+  parallelism: 3
+  template:
+    spec:
+      containers:
+        - name: math-pod
+          imagePullPolicy: IfNotPresent
+          image: ubuntu
+          command: ['expr', '3', '+', '2']
+          restartPolicy: OnFailure

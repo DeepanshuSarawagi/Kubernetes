@@ -42,3 +42,13 @@ The Kubernetes POD will perform the computational task, however, the POD will co
 to run forever. This is because of the ```restartPolicy``` which is set to ```Always``` by default.
 
 ## 2. Jobs:
+
+Consider a scenario when we require multiple pods to perform computation tasks such as performing report analysis and sending
+an email. In this scenario, we want a manager that can manage the number of pods and ensure the work is done and the pods
+exit once the work is done. Refer to [jobs.yaml](jobs.yaml) definition file for getting an idea on how it is different from ReplicaSet.
+
+If a job was created to process an image, then we would need multicontainer pods. If we want 3-4 pods to perform jobs for
+us, then we can set the ```completion``` field under spec. By default, the pods are created one after the other. 
+
+Instead of getting the jobs completed sequentially, we can get the job completed parallel using the property called ```parallelism```
+which will create the specified number of pods to complete the task.
