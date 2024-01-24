@@ -416,6 +416,8 @@ Following kubernetes networking solutions support networking policies:
 Following Kubernetes solution does not support networking policies:
 - Flannel
 
+For any Ingress/Egress rules, only following fieldSelectors are applicable. ```podSelector```, ```namespaceSelector``` and ```ipBlock```.
+
 Note:
 : Refer to below sample network policies which makes huge difference by simple AND or OR operation.
 
